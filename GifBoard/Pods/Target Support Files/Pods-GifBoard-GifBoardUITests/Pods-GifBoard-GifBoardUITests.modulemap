@@ -1,0 +1,6 @@
+framework module Pods_GifBoard_GifBoardUITests {
+  umbrella header "Pods-GifBoard-GifBoardUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

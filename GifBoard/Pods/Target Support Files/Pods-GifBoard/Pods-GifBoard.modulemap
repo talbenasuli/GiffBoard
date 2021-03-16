@@ -1,0 +1,6 @@
+framework module Pods_GifBoard {
+  umbrella header "Pods-GifBoard-umbrella.h"
+
+  export *
+  module * { export * }
+}
