@@ -36,7 +36,7 @@ extension Giff {
         let contentURL, sourceTLD, sourcePostURL: String?
         let isSticker: Int?
         let importDatetime, trendingDatetime: String?
-        let images: Images? = nil
+        let images: Images?
         
         enum CodingKeys: String, CodingKey {
             case type, id, url, slug
@@ -50,6 +50,7 @@ extension Giff {
             case isSticker = "is_sticker"
             case importDatetime = "import_datetime"
             case trendingDatetime = "trending_datetime"
+            case images
         }
     }
     

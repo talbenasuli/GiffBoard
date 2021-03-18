@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 extension Home {
     
@@ -25,10 +27,13 @@ extension Home {
             .addSegment(withTitle: viewModel.rightSegementTitle, at: 1, animated: false)
             .selectSegment(at: 0)
         
-        private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
             .backgroundColor(UIColor.App.white)
+            .delegate(self)
         
         private let viewModel: HomeViewModelType
+        private let disposeBag = DisposeBag()
+        private let collectionViewLayout = Home.CollectionViewLayout()
         
         init(viewModel: HomeViewModelType = ViewModel()) {
             self.viewModel = viewModel
@@ -39,7 +44,7 @@ extension Home {
         override func viewDidLoad() {
             super.viewDidLoad()
             view.add(titleLabel, searchBar, segmentedControl, collectionView)
-            viewModel.start()
+            bindViewModel()
         }
         
         override func viewDidAppear(_ animated: Bool) {
@@ -75,9 +80,52 @@ private extension Home.ViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(.small)
+            make.trailing.equalToSuperview().inset(.small)
             make.top.equalTo(segmentedControl.snp.bottom).offset(.small)
             make.bottom.equalToSuperview()
         }
+    }
+    
+    func bindViewModel() {
+        collectionView.register(Home.GiffCell.self)
+        viewModel.items
+            .drive(collectionView.rx.items) { collectionView, index , data in
+                
+                switch data {
+                case .giff(let data):
+                    let cell: Home.GiffCell = collectionView.dequeueReusableCell(forIndexPath: IndexPath(row: index, section: 0))
+                    cell.configure(with: data)
+                    return cell
+                }
+            }.disposed(by: disposeBag)
+        
+        viewModel.start()
+    }
+}
+
+extension Home.ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellType = viewModel.item(at: indexPath)
+        
+        switch cellType {
+        case .giff(let data):
+            if let height = Int(data.images?.downsized?.height ?? "0"),
+               let width = Int(data.images?.downsized?.width ?? "0"),
+               width != 0 && height != 0 {
+                let cellWidth = collectionView.frame.width / 3 - self.collectionViewLayout.minimumInteritemSpacing
+                let imageRatio = cellWidth / CGFloat(width)
+                return CGSize(width: cellWidth, height: CGFloat(height) * CGFloat(imageRatio))
+            }
+        }
+        
+        return .zero
+    }
+}
+
+extension Home.ViewController {
+    
+    enum CellType {
+        case giff(data: Giff.Data)
     }
 }

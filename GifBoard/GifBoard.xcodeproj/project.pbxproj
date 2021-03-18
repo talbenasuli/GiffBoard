@@ -13,6 +13,9 @@
 		220AE1F62600AC9B0096F318 /* GiffAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE1F52600AC9B0096F318 /* GiffAPI.swift */; };
 		220AE2432601003A0096F318 /* HomeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2422601003A0096F318 /* HomeRepo.swift */; };
 		220AE24C2601018C0096F318 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE24B2601018C0096F318 /* HomeRouter.swift */; };
+		220AE2552601183B0096F318 /* HomeGiffCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2542601183B0096F318 /* HomeGiffCell.swift */; };
+		220AE277260121F30096F318 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE276260121F30096F318 /* ReusableView.swift */; };
+		220AE28F260229920096F318 /* CollectionViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE28E260229910096F318 /* CollectionViewBuilder.swift */; };
 		2246AB3D25FA5B1A001B2AFA /* SearchBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB3C25FA5B1A001B2AFA /* SearchBarBuilder.swift */; };
 		2246AB4325FE0E26001B2AFA /* SegmentedControlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB4225FE0E26001B2AFA /* SegmentedControlBuilder.swift */; };
 		2246AB4825FE1575001B2AFA /* SnapKitBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */; };
@@ -69,6 +72,9 @@
 		220AE1F52600AC9B0096F318 /* GiffAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiffAPI.swift; sourceTree = "<group>"; };
 		220AE2422601003A0096F318 /* HomeRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepo.swift; sourceTree = "<group>"; };
 		220AE24B2601018C0096F318 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		220AE2542601183B0096F318 /* HomeGiffCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGiffCell.swift; sourceTree = "<group>"; };
+		220AE276260121F30096F318 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		220AE28E260229910096F318 /* CollectionViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBuilder.swift; sourceTree = "<group>"; };
 		2246AB3C25FA5B1A001B2AFA /* SearchBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarBuilder.swift; sourceTree = "<group>"; };
 		2246AB4225FE0E26001B2AFA /* SegmentedControlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlBuilder.swift; sourceTree = "<group>"; };
 		2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitBuilder.swift; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				2246ABE725FE3378001B2AFA /* HomeCollectionViewLayout.swift */,
+				220AE2542601183B0096F318 /* HomeGiffCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -246,6 +253,7 @@
 		22E3C03C25F53C3E00CBB955 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				220AE276260121F30096F318 /* ReusableView.swift */,
 				22E3BFF825F5392A00CBB955 /* AppDelegate.swift */,
 				22E3C00625F5392D00CBB955 /* Info.plist */,
 				22E3C11425F7C00100CBB955 /* Screens */,
@@ -302,6 +310,7 @@
 				2246AB3C25FA5B1A001B2AFA /* SearchBarBuilder.swift */,
 				2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */,
 				2246AB4225FE0E26001B2AFA /* SegmentedControlBuilder.swift */,
+				220AE28E260229910096F318 /* CollectionViewBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -604,6 +613,7 @@
 				220AE15925FF6B1D0096F318 /* GiffBody.swift in Sources */,
 				220AE15E25FF6B580096F318 /* GiffResponse.swift in Sources */,
 				2246AC2D25FE37E4001B2AFA /* NetworkManager.swift in Sources */,
+				220AE277260121F30096F318 /* ReusableView.swift in Sources */,
 				22E3C17C25F7CE2900CBB955 /* ImageViewBuilder.swift in Sources */,
 				22E3C28125FA10CB00CBB955 /* Colors.swift in Sources */,
 				220AE24C2601018C0096F318 /* HomeRouter.swift in Sources */,
@@ -611,8 +621,10 @@
 				22E3C22325F9078E00CBB955 /* Fonts.swift in Sources */,
 				2246AC3225FE38AC001B2AFA /* NetworkRequest.swift in Sources */,
 				22E3C1B825F8F50700CBB955 /* LabelBuilder.swift in Sources */,
+				220AE2552601183B0096F318 /* HomeGiffCell.swift in Sources */,
 				220AE2432601003A0096F318 /* HomeRepo.swift in Sources */,
 				22E3C11725F7C04C00CBB955 /* Coordinator.swift in Sources */,
+				220AE28F260229920096F318 /* CollectionViewBuilder.swift in Sources */,
 				22E3C03825F53C1D00CBB955 /* LaunchScreenViewController.swift in Sources */,
 				22E3C21D25F9073100CBB955 /* HomeViewController.swift in Sources */,
 				2246ABE825FE3378001B2AFA /* HomeCollectionViewLayout.swift in Sources */,

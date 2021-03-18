@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 extension Home {
     
@@ -21,6 +22,9 @@ extension Home {
         
         private let homeRepo: HomeRepoType
         
+        private let _items = BehaviorRelay<[ViewController.CellType]>(value: [])
+        lazy var items = _items.asDriver(onErrorJustReturn: [])
+        
         var strong: Home.Coordinator?
         
         init(homeRepo: HomeRepoType = Home.Repo()) {
@@ -30,16 +34,24 @@ extension Home {
         func start() {
             downloadGiffs()
         }
+        
+        func item(at indexPath: IndexPath) -> ViewController.CellType {
+            return _items.value[indexPath.row]
+        }
     }
 }
 
 private extension Home.ViewModel {
     
     private func downloadGiffs() {
-       
-        homeRepo.search(body: Giff.Body(query: "cats", limit: 20, offset: 0))
-            .subscribe { giffResponse in
-                print(giffResponse)
+        
+        homeRepo.search(body: Giff.Body(query: "cats", limit: 19, offset: 0))
+            .subscribe { [weak self] giffResponse in
+                if let cellTypes = giffResponse.data?.compactMap({ Home.ViewController.CellType.giff(data: $0) }) {
+                    self?._items.accept(cellTypes)
+                } else {
+                    self?._items.accept([])
+                }
             } onError: { error in
                print(error)
             }.disposed(by: disposeBag)

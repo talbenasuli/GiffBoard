@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 protocol HomeViewModelType {
     
@@ -14,5 +16,8 @@ protocol HomeViewModelType {
     var leftSegmentTitle: String { get }
     var rightSegementTitle: String { get }
     
+    var items: Driver<[Home.ViewController.CellType]> { get }
+    
+    func item(at indexPath: IndexPath) -> Home.ViewController.CellType
     func start()
 }

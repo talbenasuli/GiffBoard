@@ -7,6 +7,20 @@
 
 import UIKit
 
-final class HomeCollectionViewLayout: UICollectionViewLayout {
+extension Home {
     
+    final class CollectionViewLayout: UICollectionViewFlowLayout {
+        
+        override init() {
+            super.init()
+            minimumInteritemSpacing = CGFloat(App.Pedding.tiny.rawValue)
+            minimumLineSpacing = 0
+            scrollDirection = .vertical
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+    }
 }
