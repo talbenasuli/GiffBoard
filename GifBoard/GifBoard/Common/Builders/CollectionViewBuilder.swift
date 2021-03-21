@@ -13,4 +13,9 @@ extension UICollectionView {
         self.delegate = delegate
         return self
     }
+    
+    func keyboardDismissMode(_ keyboardDismissMode: KeyboardDismissMode) -> Self {
+        self.keyboardDismissMode = keyboardDismissMode
+        return self
+    }
 }

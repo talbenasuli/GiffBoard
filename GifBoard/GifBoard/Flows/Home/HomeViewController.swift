@@ -29,6 +29,7 @@ extension Home {
         
         private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
             .backgroundColor(UIColor.App.white)
+            .keyboardDismissMode(.onDrag)
             .delegate(self)
         
         private let viewModel: HomeViewModelType

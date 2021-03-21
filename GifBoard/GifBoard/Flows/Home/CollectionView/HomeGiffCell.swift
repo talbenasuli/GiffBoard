@@ -31,7 +31,7 @@ extension Home {
         
         override func prepareForReuse() {
             super.prepareForReuse()
-            imageView.setImage(UIColor.App.white.image())
+            imageView.clear()
         }
         
         func configure(with data: Giff.Data) {
@@ -39,6 +39,7 @@ extension Home {
                   let hight = Int(data.images?.downsized?.height ?? "0"),
                   let width = Int(data.images?.downsized?.width ?? "0"),
                   let imageURL = URL(string: link) else { return }
+            
             let loader = UIActivityIndicatorView(style: .gray)
             imageView.setGifFromURL(imageURL, customLoader: loader)
 
