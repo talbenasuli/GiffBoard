@@ -100,6 +100,18 @@ private extension Home.ViewController {
                 }
             }.disposed(by: disposeBag)
         
+        searchBar.rx.text
+            .bind(to: viewModel.searchText)
+            .disposed(by: disposeBag)
+        
+        searchBar.rx
+            .searchButtonClicked
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.onSearchTappd.accept(())
+                self?.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.start()
     }
 }

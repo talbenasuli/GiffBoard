@@ -12,7 +12,7 @@ import RxCocoa
 extension Home {
     
     final class ViewModel: HomeViewModelType {
-        
+                
         var title: String = "Giffs"
         var searchPlaceHolder: String = "Search"
         var leftSegmentTitle: String = "All"
@@ -25,10 +25,14 @@ extension Home {
         private let _items = BehaviorRelay<[ViewController.CellType]>(value: [])
         lazy var items = _items.asDriver(onErrorJustReturn: [])
         
+        var searchText = BehaviorRelay<String?>(value: nil)
+        var onSearchTappd = PublishRelay<Void>()
+        
         var strong: Home.Coordinator?
         
         init(homeRepo: HomeRepoType = Home.Repo()) {
             self.homeRepo = homeRepo
+            subscribeObservables()
         }
         
         func start() {
@@ -43,9 +47,19 @@ extension Home {
 
 private extension Home.ViewModel {
     
-    private func downloadGiffs() {
+    func subscribeObservables() {
         
-        homeRepo.search(body: Giff.Body(query: "cats", limit: 19, offset: 0))
+        onSearchTappd.subscribe(onNext: {
+            self.search()
+        }).disposed(by: disposeBag)
+    }
+    
+    func downloadGiffs() {
+        search()
+    }
+    
+    func search() {
+        homeRepo.search(body: Giff.Body(query: searchText.value ?? "", limit: 19, offset: 0))
             .subscribe { [weak self] giffResponse in
                 if let cellTypes = giffResponse.data?.compactMap({ Home.ViewController.CellType.giff(data: $0) }) {
                     self?._items.accept(cellTypes)
@@ -53,7 +67,7 @@ private extension Home.ViewModel {
                     self?._items.accept([])
                 }
             } onError: { error in
-               print(error)
+                print(error)
             }.disposed(by: disposeBag)
     }
 }

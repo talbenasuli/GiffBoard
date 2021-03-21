@@ -16,6 +16,8 @@ protocol HomeViewModelType {
     var leftSegmentTitle: String { get }
     var rightSegementTitle: String { get }
     
+    var searchText: BehaviorRelay<String?> { get }
+    var onSearchTappd: PublishRelay<Void> { get }
     var items: Driver<[Home.ViewController.CellType]> { get }
     
     func item(at indexPath: IndexPath) -> Home.ViewController.CellType
