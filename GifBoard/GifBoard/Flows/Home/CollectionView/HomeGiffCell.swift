@@ -29,6 +29,11 @@ extension Home {
             fatalError("init(coder:) has not been implemented")
         }
         
+        override func prepareForReuse() {
+            super.prepareForReuse()
+            imageView.setImage(UIColor.App.white.image())
+        }
+        
         func configure(with data: Giff.Data) {
             guard let link = data.images?.downsized?.url,
                   let hight = Int(data.images?.downsized?.height ?? "0"),

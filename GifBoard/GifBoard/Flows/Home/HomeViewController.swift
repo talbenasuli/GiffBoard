@@ -107,10 +107,24 @@ private extension Home.ViewController {
         searchBar.rx
             .searchButtonClicked
             .subscribe(onNext: { [weak self] in
+                self?.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0) , at: .top, animated: true)
                 self?.viewModel.onSearchTappd.accept(())
                 self?.view.endEditing(true)
             })
             .disposed(by: disposeBag)
+    
+        collectionView.rx
+            .didEndDragging
+            .subscribe(onNext: { [weak self] endDragging in
+                guard let self = self else { return }
+                let offset = self.collectionView.contentOffset
+                let collectionViewHeight = self.collectionView.frame.height
+                let collectionViewContentHeight = self.collectionView.contentSize.height
+                
+                if endDragging && offset.y + collectionViewHeight >= collectionViewContentHeight {
+                    self.viewModel.scrollToEnd.accept(())
+                }
+            }).disposed(by: disposeBag)
         
         viewModel.start()
     }
