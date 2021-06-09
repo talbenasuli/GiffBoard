@@ -12,7 +12,7 @@ import RxCocoa
 extension Home {
     
     final class ViewModel: HomeViewModelType {
-                
+        
         var title: String = "Giffs"
         var searchPlaceHolder: String = "Search"
         var leftSegmentTitle: String = "All"
@@ -33,7 +33,14 @@ extension Home {
         
         var strong: Home.Coordinator?
         
+        var selectedItem = PublishRelay<Home.ViewController.CellType>()
         
+        private let _showFloatingMassage = PublishRelay<String>()
+        lazy var showFloatingMassage = _showFloatingMassage.asDriver(onErrorDriveWith: .never())
+        
+        private let _loading = BehaviorRelay<Bool>(value: false)
+        lazy var loading = _loading.asDriver(onErrorJustReturn: false)
+
         init(homeRepo: HomeRepoType = Home.Repo()) {
             self.homeRepo = homeRepo
             subscribeObservables()
@@ -63,10 +70,33 @@ private extension Home.ViewModel {
             self.searchOffset = self.searchOffset + 1
             self.search()
         }).disposed(by: disposeBag)
+
+        selectedItem
+            .map { [weak self] item -> String in
+                switch item {
+                case .giff(let data):
+                    self?._loading.accept(true)
+                    self?.copy(giff: data.images?.downsized?.url)
+                    return "Item Copied!!!"
+                }
+            }.bind(to: _showFloatingMassage)
+            .disposed(by: disposeBag)
     }
     
     func downloadGiffs() {
         search()
+    }
+    
+    func copy(giff: String?) {
+        guard let giff = giff, let giffURL = URL(string: giff) else { return }
+        do {
+            let data = try Data(contentsOf: giffURL)
+            let paseBoard = UIPasteboard.general
+            paseBoard.setData(data, forPasteboardType: "com.compuserve.gif")
+            _loading.accept(false)
+        } catch {
+            print("The file could not be copied")
+        }
     }
     
     func search() {

@@ -11,8 +11,12 @@ import RxSwift
 
 extension Home {
     
-    final class ViewController: UIViewController {
-        
+    final class ViewController: UIViewController, LoaderContainer {
+    
+        var loader: Loader =
+            UIActivityIndicatorView(style: .white)
+            .backgroundColor(UIColor.App.turquoise.withAlphaComponent(0.30))
+    
         private lazy var titleLabel = UILabel()
             .font(UIFont.App.header1.value)
             .text(viewModel.title)
@@ -125,6 +129,19 @@ private extension Home.ViewController {
                 if endDragging && offset.y + collectionViewHeight >= collectionViewContentHeight {
                     self.viewModel.scrollToEnd.accept(())
                 }
+            }).disposed(by: disposeBag)
+        
+        collectionView.rx.modelSelected(Home.ViewController.CellType.self)
+            .bind(to: viewModel.selectedItem)
+            .disposed(by: disposeBag)
+        
+        viewModel.showFloatingMassage
+            .drive((self as UIViewController).rx.showToast)
+            .disposed(by: disposeBag)
+        
+        viewModel.loading
+            .drive(onNext: { [weak self] loading in
+                loading ? self?.showLoader() : self?.hideLoader()
             }).disposed(by: disposeBag)
         
         viewModel.start()

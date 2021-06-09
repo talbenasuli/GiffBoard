@@ -20,6 +20,10 @@ protocol HomeViewModelType {
     var onSearchTappd: PublishRelay<Void> { get }
     var scrollToEnd: PublishRelay<Void> { get }
     var items: Driver<[Home.ViewController.CellType]> { get }
+    var showFloatingMassage: Driver<String> { get }
+    var loading: Driver<Bool> { get }
+    
+    var selectedItem: PublishRelay<Home.ViewController.CellType> { get }
     
     func item(at indexPath: IndexPath) -> Home.ViewController.CellType
     func start()
