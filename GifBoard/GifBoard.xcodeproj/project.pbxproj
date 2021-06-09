@@ -199,6 +199,23 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		229278FE2670EA4D00C548E4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */,
+				2246AB5125FE193E001B2AFA /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		229278FF2670EA5A00C548E4 /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+				220AE2422601003A0096F318 /* HomeRepo.swift */,
+			);
+			path = Repo;
+			sourceTree = "<group>";
+		};
 		22E3BFEC25F5392A00CBB955 = {
 			isa = PBXGroup;
 			children = (
@@ -325,11 +342,10 @@
 		22E3C21325F8FD0700CBB955 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				2246ABE625FE3361001B2AFA /* CollectionView */,
 				22E3C21725F8FD8000CBB955 /* HomeCoordinator.swift */,
-				22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */,
-				2246AB5125FE193E001B2AFA /* HomeViewModel.swift */,
-				220AE2422601003A0096F318 /* HomeRepo.swift */,
+				229278FF2670EA5A00C548E4 /* Repo */,
+				229278FE2670EA4D00C548E4 /* ViewModel */,
+				2246ABE625FE3361001B2AFA /* CollectionView */,
 				22E3C21C25F9073100CBB955 /* HomeViewController.swift */,
 			);
 			path = Home;
