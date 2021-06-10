@@ -88,14 +88,20 @@ private extension Home.ViewModel {
     }
     
     func copy(giff: String?) {
-        guard let giff = giff, let giffURL = URL(string: giff) else { return }
-        do {
-            let data = try Data(contentsOf: giffURL)
-            let paseBoard = UIPasteboard.general
-            paseBoard.setData(data, forPasteboardType: "com.compuserve.gif")
-            _loading.accept(false)
-        } catch {
-            print("The file could not be copied")
+        let queue = DispatchQueue(label: "Giff-Worker")
+        queue.async {
+            guard let giff = giff, let giffURL = URL(string: giff) else { return }
+            do {
+                let data = try Data(contentsOf: giffURL)
+                let paseBoard = UIPasteboard.general
+                paseBoard.setData(data, forPasteboardType: "com.compuserve.gif")
+            } catch {
+                print("The file could not be copied")
+            }
+            
+            DispatchQueue.main.async {
+                self._loading.accept(false)
+            }
         }
     }
     
