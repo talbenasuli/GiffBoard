@@ -12,7 +12,7 @@ import RxCocoa
 extension Home {
     
     final class ViewModel: HomeViewModelType {
-        
+                
         var title: String = "Giffs"
         var searchPlaceHolder: String = "Search"
         var leftSegmentTitle: String = "All"
@@ -30,6 +30,7 @@ extension Home {
         var searchText = BehaviorRelay<String?>(value: nil)
         var onSearchTappd = PublishRelay<Void>()
         var scrollToEnd = PublishRelay<Void>()
+        var plusTapped = PublishRelay<Void>()
         
         var strong: Home.Coordinator?
         

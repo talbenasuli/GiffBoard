@@ -53,3 +53,10 @@ extension UIViewController {
         }
     }
 }
+
+extension UINavigationController {
+    
+    var last: UIViewController? {
+        return viewControllers.last
+    }
+}

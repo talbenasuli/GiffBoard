@@ -19,6 +19,8 @@ protocol HomeViewModelType {
     var searchText: BehaviorRelay<String?> { get }
     var onSearchTappd: PublishRelay<Void> { get }
     var scrollToEnd: PublishRelay<Void> { get }
+    var plusTapped: PublishRelay<Void> { get }
+    
     var items: Driver<[Home.ViewController.CellType]> { get }
     var showFloatingMassage: Driver<String> { get }
     var loading: Driver<Bool> { get }

@@ -36,6 +36,12 @@ extension Home {
             .keyboardDismissMode(.onDrag)
             .delegate(self)
         
+        private let plusButton = UIButton(frame: .zero)
+            .title("+")
+            .font(UIFont.App.header1.value)
+            .titleColor(UIColor.App.white)
+            .backgroundColor(UIColor.App.turquoise)
+        
         private let viewModel: HomeViewModelType
         private let disposeBag = DisposeBag()
         private let collectionViewLayout = Home.CollectionViewLayout()
@@ -48,13 +54,18 @@ extension Home {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            view.add(titleLabel, searchBar, segmentedControl, collectionView)
+            view.add(titleLabel, searchBar, segmentedControl, collectionView, plusButton)
             bindViewModel()
         }
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             navigation(style: .none)
+        }
+        
+        override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+            self.plusButton.layer.cornerRadius = self.plusButton.frame.height / 2
         }
         
         required init?(coder: NSCoder) {
@@ -89,6 +100,12 @@ private extension Home.ViewController {
             make.trailing.equalToSuperview().inset(.small)
             make.top.equalTo(segmentedControl.snp.bottom).offset(.small)
             make.bottom.equalToSuperview()
+        }
+        
+        plusButton.snp.makeConstraints { make in
+            make.width.height.equalTo(App.Pedding.huge.rawValue * 2)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(App.Pedding.huge.rawValue * 2)
         }
     }
     
@@ -143,6 +160,10 @@ private extension Home.ViewController {
             .drive(onNext: { [weak self] loading in
                 loading ? self?.showLoader() : self?.hideLoader()
             }).disposed(by: disposeBag)
+        
+        plusButton.rx.tap
+            .bind(to: viewModel.plusTapped)
+            .disposed(by: disposeBag)
         
         viewModel.start()
     }

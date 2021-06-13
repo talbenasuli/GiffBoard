@@ -10,17 +10,29 @@ import UIKit
 enum Home { }
 
 extension Home {
-    
     final class Coordinator: Coordinators.Base {
-        
         override func start() {
-            navigationController.viewControllers.removeAll()
-            let viewModel = ViewModel()
-            
-            viewModel.strong = self
-            
-            let vc = ViewController(viewModel: viewModel)
-            show(vc, animated: false)
+            showHome()
         }
+    }
+}
+
+private extension Home.Coordinator {
+    
+    func showHome() {
+        navigationController.viewControllers.removeAll()
+        let viewModel = Home.ViewModel()
+        
+        viewModel.plusTapped.bind {
+            self.showCreateGiff()
+        }.disposed(by: viewModel.disposeBag)
+        
+        let vc = Home.ViewController(viewModel: viewModel)
+        show(vc, animated: false)
+    }
+    
+    func showCreateGiff() {
+        guard let presenting = navigationController.last else { return } // TBA NTD add error handling
+        CreateGiff.Coordinator(presentationStyle: .present(presenting: presenting)).start()
     }
 }
