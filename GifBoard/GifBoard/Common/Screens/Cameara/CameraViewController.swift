@@ -40,6 +40,7 @@ extension Camera {
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            cameraButton.alpha = 0
             bindViewModel()
             setupNavigation()
             showLoader()
@@ -81,6 +82,7 @@ private extension Camera.ViewController {
                 layer.frame = self.view.bounds
                 self.view.layer.addSublayer(layer)
                 self.view.bringSubviewToFront(self.cameraButton)
+                self.cameraButton.fadeIn(duration: 0.7)
             }).disposed(by: disposeBag)
         
         let longGestureBegin = view.rx
@@ -99,10 +101,18 @@ private extension Camera.ViewController {
             .bind(to: viewModel.cameraLongPressBagan)
             .disposed(by: disposeBag)
         
-//        longGestureBegin
+        longGestureBegin
+            .map({ return (ratio: 1.3, duration: 0.3) })
+            .bind(to: (cameraButton as UIView).rx.scaleAnimation )
+            .disposed(by: disposeBag)
         
        longGestureFinished
             .bind(to: viewModel.cameraLongPressFinished)
+            .disposed(by: disposeBag)
+        
+        longGestureFinished
+            .map({ return (ratio: 1.0, duration: 0.3) })
+            .bind(to: (cameraButton as UIView).rx.scaleAnimation )
             .disposed(by: disposeBag)
         
         viewModel.enableTouch
@@ -118,7 +128,7 @@ private extension Camera.ViewController {
         cameraButton.snp.makeConstraints { make in
             make.height.width.equalTo(App.Pedding.huge.rawValue * 2)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(.huge)
+            make.bottom.equalToSuperview().inset(App.Pedding.huge.rawValue * 2)
         }
     }
 }
