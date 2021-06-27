@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-protocol CameraSessionControllerDelegate: class {
+protocol CameraSessionControllerDelegate: AnyObject {
     func cameraSessionControllerIsReady(_ controller: CameraSessionController, with layer: AVCaptureVideoPreviewLayer)
     func cameraSessionControllerFailed(_ controller: CameraSessionController, with error: AVError.Code)
     

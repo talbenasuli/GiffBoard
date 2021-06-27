@@ -23,6 +23,9 @@
 		2218C8F02675F5EB0058BE63 /* CamearaViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C8EF2675F5EB0058BE63 /* CamearaViewModelType.swift */; };
 		2218C8F22675F7B80058BE63 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C8F12675F7B80058BE63 /* Camera.swift */; };
 		2218C8F62675FB6C0058BE63 /* CreateGiffCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C8F52675FB6C0058BE63 /* CreateGiffCoordinator.swift */; };
+		2218C9052678D6CB0058BE63 /* RX+CameraSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C9042678D6CB0058BE63 /* RX+CameraSessionController.swift */; };
+		2218C9072678DD9F0058BE63 /* RXGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C9062678DD9F0058BE63 /* RXGeneral.swift */; };
+		2218C9092678E8560058BE63 /* Rx+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C9082678E8560058BE63 /* Rx+Animations.swift */; };
 		2246AB3D25FA5B1A001B2AFA /* SearchBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB3C25FA5B1A001B2AFA /* SearchBarBuilder.swift */; };
 		2246AB4325FE0E26001B2AFA /* SegmentedControlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB4225FE0E26001B2AFA /* SegmentedControlBuilder.swift */; };
 		2246AB4825FE1575001B2AFA /* SnapKitBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */; };
@@ -52,6 +55,8 @@
 		22E3C22325F9078E00CBB955 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C22225F9078E00CBB955 /* Fonts.swift */; };
 		22E3C22B25F9087700CBB955 /* HomeViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */; };
 		22E3C28125FA10CB00CBB955 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C28025FA10CB00CBB955 /* Colors.swift */; };
+		22F663392688894100A82446 /* Rx+UINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F663382688894100A82446 /* Rx+UINavigation.swift */; };
+		22F6633B26888AF900A82446 /* Rx+Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6633A26888AF900A82446 /* Rx+Coordinator.swift */; };
 		6D2DD811089812D898B08711 /* Pods_GifBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B733140952BB967B7AE7D5B7 /* Pods_GifBoard.framework */; };
 		A4533B03CE320166414FE518 /* Pods_GifBoard_GifBoardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951D8FC2DBE45FD7FBCCC44 /* Pods_GifBoard_GifBoardUITests.framework */; };
 		A75D0E9B1FD7E045C4120FC5 /* Pods_GifBoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E27F6CED0811FDEAC856EB /* Pods_GifBoardTests.framework */; };
@@ -92,6 +97,9 @@
 		2218C8EF2675F5EB0058BE63 /* CamearaViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamearaViewModelType.swift; sourceTree = "<group>"; };
 		2218C8F12675F7B80058BE63 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		2218C8F52675FB6C0058BE63 /* CreateGiffCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGiffCoordinator.swift; sourceTree = "<group>"; };
+		2218C9042678D6CB0058BE63 /* RX+CameraSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RX+CameraSessionController.swift"; sourceTree = "<group>"; };
+		2218C9062678DD9F0058BE63 /* RXGeneral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXGeneral.swift; sourceTree = "<group>"; };
+		2218C9082678E8560058BE63 /* Rx+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Animations.swift"; sourceTree = "<group>"; };
 		2246AB3C25FA5B1A001B2AFA /* SearchBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarBuilder.swift; sourceTree = "<group>"; };
 		2246AB4225FE0E26001B2AFA /* SegmentedControlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlBuilder.swift; sourceTree = "<group>"; };
 		2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitBuilder.swift; sourceTree = "<group>"; };
@@ -127,6 +135,8 @@
 		22E3C22225F9078E00CBB955 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelType.swift; sourceTree = "<group>"; };
 		22E3C28025FA10CB00CBB955 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		22F663382688894100A82446 /* Rx+UINavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UINavigation.swift"; sourceTree = "<group>"; };
+		22F6633A26888AF900A82446 /* Rx+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Coordinator.swift"; sourceTree = "<group>"; };
 		57836B5CD7A9426100983D23 /* Pods-GifBoard-GifBoardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifBoard-GifBoardUITests.debug.xcconfig"; path = "Target Support Files/Pods-GifBoard-GifBoardUITests/Pods-GifBoard-GifBoardUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		93E27F6CED0811FDEAC856EB /* Pods_GifBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9477532A185CD0970F698AC8 /* Pods-GifBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-GifBoardTests/Pods-GifBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -267,7 +277,12 @@
 		22B01F4F2670F10200AF474C /* RX */ = {
 			isa = PBXGroup;
 			children = (
+				2218C9062678DD9F0058BE63 /* RXGeneral.swift */,
 				22B01F532670F87C00AF474C /* Rx+UIViewController.swift */,
+				2218C9042678D6CB0058BE63 /* RX+CameraSessionController.swift */,
+				2218C9082678E8560058BE63 /* Rx+Animations.swift */,
+				22F663382688894100A82446 /* Rx+UINavigation.swift */,
+				22F6633A26888AF900A82446 /* Rx+Coordinator.swift */,
 			);
 			path = RX;
 			sourceTree = "<group>";
@@ -685,10 +700,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2246AB5225FE193F001B2AFA /* HomeViewModel.swift in Sources */,
+				2218C9072678DD9F0058BE63 /* RXGeneral.swift in Sources */,
 				2218C8EE2675F5DD0058BE63 /* CameraViewModel.swift in Sources */,
 				220AE1F62600AC9B0096F318 /* GiffAPI.swift in Sources */,
 				22E3C16725F7C78700CBB955 /* AppCoordinator.swift in Sources */,
 				22E3C1A425F8F34A00CBB955 /* NavigationBuilder.swift in Sources */,
+				2218C9092678E8560058BE63 /* Rx+Animations.swift in Sources */,
 				220AE15925FF6B1D0096F318 /* GiffBody.swift in Sources */,
 				2218C8EC2675F5D30058BE63 /* CameraViewController.swift in Sources */,
 				220AE15E25FF6B580096F318 /* GiffResponse.swift in Sources */,
@@ -704,7 +721,9 @@
 				22B01F542670F87C00AF474C /* Rx+UIViewController.swift in Sources */,
 				22B01F592671004F00AF474C /* LoaderContainer.swift in Sources */,
 				2246AC3225FE38AC001B2AFA /* NetworkRequest.swift in Sources */,
+				2218C9052678D6CB0058BE63 /* RX+CameraSessionController.swift in Sources */,
 				22E3C1B825F8F50700CBB955 /* LabelBuilder.swift in Sources */,
+				22F6633B26888AF900A82446 /* Rx+Coordinator.swift in Sources */,
 				2218C8F02675F5EB0058BE63 /* CamearaViewModelType.swift in Sources */,
 				22B01F4B2670F0AF00AF474C /* MessagesBuilder.swift in Sources */,
 				220AE2552601183B0096F318 /* HomeGiffCell.swift in Sources */,
@@ -720,6 +739,7 @@
 				2246AB4D25FE1590001B2AFA /* Pedding.swift in Sources */,
 				22E3C22B25F9087700CBB955 /* HomeViewModelType.swift in Sources */,
 				2246AB4325FE0E26001B2AFA /* SegmentedControlBuilder.swift in Sources */,
+				22F663392688894100A82446 /* Rx+UINavigation.swift in Sources */,
 				2246AB3D25FA5B1A001B2AFA /* SearchBarBuilder.swift in Sources */,
 				22E3C1FF25F8F8F000CBB955 /* ColorBuilder.swift in Sources */,
 				22E3BFF925F5392A00CBB955 /* AppDelegate.swift in Sources */,

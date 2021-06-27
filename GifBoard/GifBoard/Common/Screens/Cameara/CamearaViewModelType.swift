@@ -12,7 +12,14 @@ import RxCocoa
 
 protocol CameraViewModelType {
     
+    // output
     var cameraLayer: Driver<AVCaptureVideoPreviewLayer> { get }
+    var enableTouch: Driver<Bool> { get }
+    
+    // input
+    var cameraLongPressBagan: PublishRelay<Void> { get }
+    var cameraLongPressFinished: PublishRelay<Void> { get }
+    var cancelTapped: PublishRelay<Void> { get }
     
     func openCamera()
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CoordinatorType: class {
+protocol CoordinatorType: AnyObject {
     var navigationController: UINavigationController { get }
     func start()
 }
@@ -49,6 +49,19 @@ extension Coordinators {
             
             let isFirstScreen = navigationStartIndex == 0
             isFirstScreen ? showFirst(viewController, animated: animated, modalPresentationStyle: modalPresentationStyle): navigationController.pushViewController(viewController, animated: animated)
+        }
+        
+        func dismissCoordinator(animated: Bool = true, completion: (() -> Void)? = nil) {
+            
+            switch presentationStyle {
+            case .present:
+                navigationController.dismiss(animated: animated, completion: completion)
+            case .push:
+                navigationController.popToRootViewController(animated: animated)
+                completion?()
+            case .window:
+                break
+            }
         }
         
         private func showFirst(_ viewController: UIViewController,

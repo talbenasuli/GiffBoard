@@ -25,5 +25,20 @@ extension UIView {
         self.backgroundColor = color
         return self
     }
+    
+    func borderColor(_ color: UIColor) -> Self {
+        layer.borderColor = UIColor.white.cgColor
+        return self
+    }
+    
+    func borderWidth(_ width: CGFloat) -> Self {
+        layer.borderWidth = width
+        return self
+    }
+    
+    func cornerRadius(_ cornerRadius: CGFloat) -> Self {
+        self.layer.cornerRadius = cornerRadius
+        return self
+    }
 }
 

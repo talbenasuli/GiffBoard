@@ -8,10 +8,18 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 extension Camera {
     
-    final class ViewController: UIViewController {
+    final class ViewController: UIViewController, LoaderContainer {
+    
+        var loader: Loader = UIActivityIndicatorView(style: .gray)
+    
+        private let cameraButton = UIButton(frame: .zero)
+            .backgroundColor(UIColor.App.turquoise)
+            .borderColor(UIColor.App.white)
+            .borderWidth(1)
         
         private let viewModel: CameraViewModelType
         private let disposeBag = DisposeBag()
@@ -25,20 +33,45 @@ extension Camera {
             fatalError("init(coder:) has not been implemented")
         }
         
+        override func loadView() {
+            super.loadView()
+            addViews()
+        }
+        
         override func viewDidLoad() {
             super.viewDidLoad()
             bindViewModel()
-            navigation(style: .none)
+            setupNavigation()
+            showLoader()
+            view.backgroundColor = .white
         }
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             viewModel.openCamera()
         }
+        
+        override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+            cameraButton.layer.cornerRadius = cameraButton.frame.height / 2
+        }
     }
 }
 
 private extension Camera.ViewController {
+    
+    func setupNavigation() {
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+
+        cancelButton.rx
+            .tap
+            .bind(to: viewModel.cancelTapped)
+            .disposed(by: disposeBag)
+        
+        navigation(style: .background(color: .clear),
+                   .separator(.clear),
+                   .right(buttons: [cancelButton]))
+    }
     
     func bindViewModel() {
         
@@ -47,6 +80,45 @@ private extension Camera.ViewController {
                 guard let self = self else { return }
                 layer.frame = self.view.bounds
                 self.view.layer.addSublayer(layer)
+                self.view.bringSubviewToFront(self.cameraButton)
             }).disposed(by: disposeBag)
+        
+        let longGestureBegin = view.rx
+            .longPressGesture()
+            .when(.began)
+            .map({ _ in })
+            .share()
+        
+        let longGestureFinished = view.rx
+            .longPressGesture()
+            .when(.ended)
+            .map({ _ in })
+            .share()
+        
+       longGestureBegin
+            .bind(to: viewModel.cameraLongPressBagan)
+            .disposed(by: disposeBag)
+        
+//        longGestureBegin
+        
+       longGestureFinished
+            .bind(to: viewModel.cameraLongPressFinished)
+            .disposed(by: disposeBag)
+        
+        viewModel.enableTouch
+            .map({ !$0 })
+            .drive(cameraButton.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+    
+    func addViews() {
+        
+        view.add(cameraButton)
+        
+        cameraButton.snp.makeConstraints { make in
+            make.height.width.equalTo(App.Pedding.huge.rawValue * 2)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(.huge)
+        }
     }
 }

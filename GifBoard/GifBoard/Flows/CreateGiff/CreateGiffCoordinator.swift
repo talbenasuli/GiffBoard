@@ -23,6 +23,11 @@ private extension CreateGiff.Coordinator {
     
     func showCamera() {
         let viewModel = Camera.ViewModel()
+        
+        viewModel.cancelTapped
+            .bind(to: (self as Coordinators.Base).rx.dismissCoordinator)
+            .disposed(by: viewModel.disposeBag)
+        
         let viewController = Camera.ViewController(viewModel: viewModel)
         show(viewController)
     }
