@@ -29,3 +29,11 @@ extension UIButton {
         return self
     }
 }
+
+extension UIBarButtonItem {
+    
+    func tintColor(_ color: UIColor) -> Self {
+        tintColor = color
+        return self
+    }
+}

@@ -63,6 +63,7 @@ private extension Camera.ViewController {
     
     func setupNavigation() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+            .tintColor(.white)
 
         cancelButton.rx
             .tap
@@ -122,7 +123,7 @@ private extension Camera.ViewController {
     }
     
     func addViews() {
-        
+
         view.add(cameraButton)
         
         cameraButton.snp.makeConstraints { make in
