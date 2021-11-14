@@ -10,6 +10,7 @@ PODS:
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
   - SnapKit (5.0.1)
+  - SwiftGifOrigin (1.7.0)
   - SwiftyGif (5.4.0)
 
 DEPENDENCIES:
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - RxGesture
   - RxSwift
   - SnapKit (~> 5.0.0)
+  - SwiftGifOrigin (~> 1.7.0)
   - SwiftyGif
 
 SPEC REPOS:
@@ -28,6 +30,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SnapKit
+    - SwiftGifOrigin
     - SwiftyGif
 
 SPEC CHECKSUMS:
@@ -37,8 +40,9 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
 
-PODFILE CHECKSUM: 81c3871e6ec32937d8ee99eb3cdf8d8110c6695c
+PODFILE CHECKSUM: 7abbcbff1dcfa3000606bf4f20289130287822ba
 
 COCOAPODS: 1.10.1

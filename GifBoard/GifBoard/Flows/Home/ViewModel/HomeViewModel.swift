@@ -63,13 +63,13 @@ private extension Home.ViewModel {
         
         onSearchTappd.subscribe(onNext: { [weak self] in
             self?.searchOffset = 0
-            self?.search()
+            self?.search(text: self?.searchText.value ?? "")
         }).disposed(by: disposeBag)
         
         scrollToEnd.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             self.searchOffset = self.searchOffset + 1
-            self.search()
+            self.search(text: self.searchText.value ?? "")
         }).disposed(by: disposeBag)
 
         selectedItem
@@ -85,7 +85,7 @@ private extension Home.ViewModel {
     }
     
     func downloadGiffs() {
-        search()
+        search(text: "trending")
     }
     
     func copy(giff: String?) {
@@ -106,9 +106,9 @@ private extension Home.ViewModel {
         }
     }
     
-    func search() {
+    func search(text: String) {
         print("search offset: \(searchOffset)")
-        homeRepo.search(body: Giff.Body(query: searchText.value ?? "", limit: limit, offset: searchOffset))
+        homeRepo.search(body: Giff.Body(query: text, limit: limit, offset: searchOffset))
             .subscribe { [weak self] giffResponse in
                 if let cellTypes = giffResponse.data?.compactMap({ Home.ViewController.CellType.giff(data: $0) }) {
                     guard let self = self else { return }

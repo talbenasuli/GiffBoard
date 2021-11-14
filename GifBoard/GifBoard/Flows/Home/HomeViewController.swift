@@ -105,7 +105,7 @@ private extension Home.ViewController {
         plusButton.snp.makeConstraints { make in
             make.width.height.equalTo(App.Pedding.huge.rawValue * 2)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(App.Pedding.huge.rawValue * 2)
+            make.bottom.equalToSuperview().inset(App.Pedding.huge.rawValue)
         }
     }
     

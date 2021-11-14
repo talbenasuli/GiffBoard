@@ -13,6 +13,8 @@ import RxGesture
 extension Camera {
     
     final class ViewController: UIViewController, LoaderContainer {
+        
+        private var viewDidAppear = false
     
         var loader: Loader = UIActivityIndicatorView(style: .gray)
     
@@ -49,7 +51,11 @@ extension Camera {
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
-            viewModel.openCamera()
+            
+            if !viewDidAppear {
+                viewModel.input.openCamera.accept(())
+                viewDidAppear = true
+            }
         }
         
         override func viewDidLayoutSubviews() {
@@ -67,7 +73,7 @@ private extension Camera.ViewController {
 
         cancelButton.rx
             .tap
-            .bind(to: viewModel.cancelTapped)
+            .bind(to: viewModel.input.cancelTapped)
             .disposed(by: disposeBag)
         
         navigation(style: .background(color: .clear),
@@ -77,7 +83,7 @@ private extension Camera.ViewController {
     
     func bindViewModel() {
         
-        viewModel.cameraLayer
+        viewModel.output.cameraLayer
             .drive(onNext: { [weak self] layer in
                 guard let self = self else { return }
                 layer.frame = self.view.bounds
@@ -86,20 +92,20 @@ private extension Camera.ViewController {
                 self.cameraButton.fadeIn(duration: 0.7)
             }).disposed(by: disposeBag)
         
-        let longGestureBegin = view.rx
+        let longGestureBegin = cameraButton.rx
             .longPressGesture()
             .when(.began)
             .map({ _ in })
             .share()
         
-        let longGestureFinished = view.rx
+        let longGestureFinished = cameraButton.rx
             .longPressGesture()
             .when(.ended)
             .map({ _ in })
             .share()
         
        longGestureBegin
-            .bind(to: viewModel.cameraLongPressBagan)
+        .bind(to: viewModel.input.cameraLongPressBagan)
             .disposed(by: disposeBag)
         
         longGestureBegin
@@ -108,7 +114,7 @@ private extension Camera.ViewController {
             .disposed(by: disposeBag)
         
        longGestureFinished
-            .bind(to: viewModel.cameraLongPressFinished)
+        .bind(to: viewModel.input.cameraLongPressFinished)
             .disposed(by: disposeBag)
         
         longGestureFinished
@@ -116,7 +122,7 @@ private extension Camera.ViewController {
             .bind(to: (cameraButton as UIView).rx.scaleAnimation )
             .disposed(by: disposeBag)
         
-        viewModel.enableTouch
+        viewModel.output.enableTouch
             .map({ !$0 })
             .drive(cameraButton.rx.isHidden)
             .disposed(by: disposeBag)

@@ -27,18 +27,10 @@ extension Coordinators {
         var presentationStyle: PresentationStyle
         var navigationController = UINavigationController()
         
-        private let navigationStartIndex: Int
+        private var didShowFirst: Bool = false
         
         init(presentationStyle: PresentationStyle) {
             self.presentationStyle = presentationStyle
-            
-            switch presentationStyle {
-            case .present, .window:
-                navigationStartIndex = 0
-                
-            case .push(let navigation):
-                navigationStartIndex = navigation.lastViewControllerIndex
-            }
         }
         
         func start() { }
@@ -47,8 +39,11 @@ extension Coordinators {
                   animated: Bool = true,
                   modalPresentationStyle: UIModalPresentationStyle = .fullScreen) {
             
-            let isFirstScreen = navigationStartIndex == 0
-            isFirstScreen ? showFirst(viewController, animated: animated, modalPresentationStyle: modalPresentationStyle): navigationController.pushViewController(viewController, animated: animated)
+            if !didShowFirst {
+                showFirst(viewController, animated: animated, modalPresentationStyle: modalPresentationStyle)
+            } else {
+                navigationController.pushViewController(viewController, animated: animated)
+            }
         }
         
         func dismissCoordinator(animated: Bool = true, completion: (() -> Void)? = nil) {
@@ -84,17 +79,8 @@ extension Coordinators {
                 window.makeKeyAndVisible()
                 window.rootViewController = navigationController
             }
+            
+            didShowFirst = true
         }
-    }
-}
-
-extension UINavigationController {
-    var lastViewControllerIndex: Int {
-        return viewControllers.count > 0 ? viewControllers.count - 1 : 0
-    }
-
-    func pop(to index: Int, animated: Bool = true) {
-        let viewController = viewControllers[index]
-        popToViewController(viewController, animated: animated)
     }
 }

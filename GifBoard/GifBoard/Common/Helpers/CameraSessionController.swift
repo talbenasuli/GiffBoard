@@ -179,7 +179,6 @@ extension CameraSessionController: AVCapturePhotoCaptureDelegate {
         guard let imageData = photo.fileDataRepresentation(),
             let imageView = UIImage(data: imageData),
             let cgImage = imageView.cgImage else {
-            print("Error while generating image from photo capture data.")
             return
         }
         
