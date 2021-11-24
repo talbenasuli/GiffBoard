@@ -13,7 +13,7 @@ extension Home {
         
         override init() {
             super.init()
-            minimumInteritemSpacing = CGFloat(App.Pedding.tiny.rawValue)
+            minimumInteritemSpacing = CGFloat(App.Padding.tiny.rawValue)
             minimumLineSpacing = 0
             scrollDirection = .vertical
         }

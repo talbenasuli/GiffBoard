@@ -48,3 +48,29 @@ extension LoaderContainer where Self: UIViewController {
         loader.stopAnimating()
     }
 }
+
+extension LoaderContainer where Self: UIButton {
+    
+    func addLoader() {
+        loader.backgroundColor = backgroundColor
+        add(loader)
+        loader.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func showLoader() {
+        let loaderExists = subviews.first { $0 is Loader } != nil
+        
+        if !loaderExists {
+            addLoader()
+        }
+        loader.isHidden = false
+        loader.startAnimating()
+    }
+    
+    func hideLoader() {
+        loader.isHidden = true
+        loader.stopAnimating()
+    }
+}

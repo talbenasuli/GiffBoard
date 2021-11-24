@@ -27,6 +27,7 @@ extension Camera {
         var gifUrl: Driver<URL>
         var images: Driver<[UIImage]>
         var duration: TimeInterval
+        var gifFinished: Driver<Void>
     }
 }
 

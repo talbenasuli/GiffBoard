@@ -31,16 +31,27 @@ private extension CreateGiff.Coordinator {
         
         viewModel.output.images
             .drive(onNext: { [weak viewModel] images in
-                guard let viewModel = viewModel else { return }
-                self.showGif(with: images, duration: viewModel.output.duration)
+                guard let viewModel = viewModel, !images.isEmpty else { return }
+                self.showGif(with: viewModel, and: images)
             }).disposed(by: viewModel.disposeBag)
         
         let viewController = Camera.ViewController(viewModel: viewModel)
         show(viewController)
     }
     
-    func showGif(with images: [UIImage], duration: TimeInterval) {
-        let viewController = Giff.PresenterViewController(with: images, duration: duration)
+    func showGif(with cameraViewModel: Camera.ViewModel, and images: [UIImage]) {
+        let viewModel = Giff.PresenterViewModel(images: images, animationDuration: cameraViewModel.output.duration)
+
+        cameraViewModel.output.gifFinished
+            .asObservable()
+            .bind(to: viewModel.input.gifFinished)
+            .disposed(by: cameraViewModel.disposeBag)
+        
+        viewModel.output.undoTapped
+            .drive((self as Coordinators.Base).rx.dismissCoordinator)
+            .disposed(by: viewModel.disposeBag)
+
+        let viewController = Giff.PresenterViewController(viewModel: viewModel)
         show(viewController)
     }
 }

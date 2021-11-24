@@ -40,7 +40,14 @@ extension Home {
                   let width = Int(data.images?.downsized?.width ?? "0"),
                   let imageURL = URL(string: link) else { return }
             
-            let loader = UIActivityIndicatorView(style: .gray)
+            let loader = RandomColorLoader(frame: .zero)
+            
+            contentView.add(loader)
+            
+            loader.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            
             imageView.setGifFromURL(imageURL, customLoader: loader)
 
             imageView.snp.updateConstraints { make in

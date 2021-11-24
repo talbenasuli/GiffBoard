@@ -103,9 +103,9 @@ private extension Home.ViewController {
         }
         
         plusButton.snp.makeConstraints { make in
-            make.width.height.equalTo(App.Pedding.huge.rawValue * 2)
+            make.width.height.equalTo(App.Padding.huge.rawValue * 2)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(App.Pedding.huge.rawValue)
+            make.bottom.equalToSuperview().inset(App.Padding.huge.rawValue)
         }
     }
     
@@ -178,7 +178,7 @@ extension Home.ViewController: UICollectionViewDelegateFlowLayout {
             if let height = Int(data.images?.downsized?.height ?? "0"),
                let width = Int(data.images?.downsized?.width ?? "0"),
                width != 0 && height != 0 {
-                let cellWidth = collectionView.frame.width / 3 - self.collectionViewLayout.minimumInteritemSpacing
+                let cellWidth = collectionView.frame.width / 2 - self.collectionViewLayout.minimumInteritemSpacing
                 let imageRatio = cellWidth / CGFloat(width)
                 return CGSize(width: cellWidth, height: CGFloat(height) * CGFloat(imageRatio))
             }

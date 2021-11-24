@@ -68,7 +68,7 @@ extension Camera {
 private extension Camera.ViewController {
     
     func setupNavigation() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
             .tintColor(.white)
 
         cancelButton.rx
@@ -133,9 +133,9 @@ private extension Camera.ViewController {
         view.add(cameraButton)
         
         cameraButton.snp.makeConstraints { make in
-            make.height.width.equalTo(App.Pedding.huge.rawValue * 2)
+            make.height.width.equalTo(App.Padding.huge.rawValue * 2)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(App.Pedding.huge.rawValue * 2)
+            make.bottom.equalToSuperview().inset(App.Padding.huge.rawValue * 2)
         }
     }
 }

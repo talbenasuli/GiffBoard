@@ -27,7 +27,7 @@ extension Giff {
                 destinationURL = saveableURL
             } else {
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-                destinationURL = documentsURL!.appendingPathComponent("1.gif")
+                destinationURL = documentsURL!.appendingPathComponent("TEMP.gif")
             }
             
             guard let destinationGIF = CGImageDestinationCreateWithURL(destinationURL as CFURL, kUTTypeGIF, images.count, nil) else {

@@ -28,7 +28,8 @@ extension Camera {
                                           cancelTapped: input.cancelTapped.asDriver(onErrorDriveWith: .never()),
                                           gifUrl: gifURL.asDriver(onErrorDriveWith: .never()),
                                           images: finishedSnapshot.asDriver(onErrorDriveWith: .never()),
-                                          duration: duration)
+                                          duration: duration,
+                                          gifFinished: gifFinished.asDriver(onErrorDriveWith: .never()))
         
         private let cameraSessionController = CameraSessionController()
         private let gifConverter: GifConverter
@@ -38,10 +39,11 @@ extension Camera {
         
         private var capturedImages = [UIImage]()
         private var finishedSnapshot = BehaviorRelay<[UIImage]>(value: [])
+        private var gifFinished = PublishRelay<Void>()
         private var timer: Timer?
         private var duration = 0.0
         private var startTime: TimeInterval?
-        private lazy var takeShotWorkItem =  DispatchWorkItem(block: { })
+        private lazy var takeShotWorkItem = DispatchWorkItem(block: { })
         
         init(gifConverter: GifConverter = Giff.Converter()) {
             self.gifConverter = gifConverter
@@ -96,6 +98,7 @@ private extension Camera.ViewModel {
                             self?.gifURL.accept(url)
                             let data: NSData = NSData(contentsOf: url)!
                             UIPasteboard.general.setData(data as Data, forPasteboardType: "com.compuserve.gif")
+                            self?.gifFinished.accept(())
                         }
                     })
                 }
