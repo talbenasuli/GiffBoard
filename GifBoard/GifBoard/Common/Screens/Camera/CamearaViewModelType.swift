@@ -24,10 +24,9 @@ extension Camera {
         var cameraLayer: Driver<AVCaptureVideoPreviewLayer>
         var enableTouch: Driver<Bool>
         var cancelTapped: Driver<Void>
-        var gifUrl: Driver<URL>
         var images: Driver<[UIImage]>
         var duration: TimeInterval
-        var gifFinished: Driver<Void>
+        var gifFinished: Driver<Data>
     }
 }
 

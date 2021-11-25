@@ -50,7 +50,11 @@ private extension CreateGiff.Coordinator {
         viewModel.output.undoTapped
             .drive((self as Coordinators.Base).rx.dismissCoordinator)
             .disposed(by: viewModel.disposeBag)
-
+        
+        viewModel.output.done
+            .drive((self as Coordinators.Base).rx.dismissCoordinator)
+            .disposed(by: viewModel.disposeBag)
+        
         let viewController = Giff.PresenterViewController(viewModel: viewModel)
         show(viewController)
     }

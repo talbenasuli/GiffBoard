@@ -10,7 +10,7 @@ import Foundation
 extension Giff {
     
     struct Response: Decodable {
-        var data: [Data]?
+        var data: [Content]?
         var pagination: Pagination?
     }
     
@@ -26,7 +26,7 @@ extension Giff {
         }
     }
     
-    struct Data: Codable {
+    struct Content: Codable {
         let type, id: String?
         let url: String?
         let slug: String?

@@ -8,6 +8,7 @@ target 'GifBoard' do
   pod "RxGesture"
   pod 'SwiftyGif'
   pod 'lottie-ios'
+  pod 'Disk'
   use_frameworks!
 
   # Pods for GifBoard

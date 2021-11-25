@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftGifOrigin
 import RxSwift
 
 extension Giff {
@@ -83,6 +82,7 @@ extension Giff {
         private func bindViewModel() {
             bindImageView()
             bindBottomButton()
+            bindToast()
         }
         
         private func bindImageView() {
@@ -99,7 +99,15 @@ extension Giff {
                 .disposed(by: disposeBag)
             
             viewModel.output.loading
-                .drive(bottomButton.rx.loader)
+                .drive(onNext: { loading in
+                    loading ? self.bottomButton.showLoader() : self.bottomButton.hideLoader()
+                })
+                .disposed(by: disposeBag)
+        }
+        
+        private func bindToast() {
+            viewModel.output.gifCopied
+                .drive((self as UIViewController).rx.showToast)
                 .disposed(by: disposeBag)
         }
     }

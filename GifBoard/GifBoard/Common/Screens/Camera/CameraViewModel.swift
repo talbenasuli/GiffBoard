@@ -21,12 +21,10 @@ extension Camera {
         var input = ViewModelInput()
         
         private let cameraLayer = PublishRelay<AVCaptureVideoPreviewLayer>()
-        private let gifURL = PublishRelay<URL>()
         
         lazy var output = ViewModelOutput(cameraLayer: cameraLayer.asDriver(onErrorDriveWith: .never()),
                                           enableTouch: input.enableTouch.asDriver(onErrorDriveWith: .never()),
                                           cancelTapped: input.cancelTapped.asDriver(onErrorDriveWith: .never()),
-                                          gifUrl: gifURL.asDriver(onErrorDriveWith: .never()),
                                           images: finishedSnapshot.asDriver(onErrorDriveWith: .never()),
                                           duration: duration,
                                           gifFinished: gifFinished.asDriver(onErrorDriveWith: .never()))
@@ -39,7 +37,7 @@ extension Camera {
         
         private var capturedImages = [UIImage]()
         private var finishedSnapshot = BehaviorRelay<[UIImage]>(value: [])
-        private var gifFinished = PublishRelay<Void>()
+        private var gifFinished = PublishRelay<Data>()
         private var timer: Timer?
         private var duration = 0.0
         private var startTime: TimeInterval?
@@ -91,14 +89,13 @@ private extension Camera.ViewModel {
                 self.takeShotWorkItem.cancel()
                 self.finishedSnapshot.accept(self.capturedImages)
                 
-                DispatchQueue.global().async {
+                DispatchQueue.global().async { [weak self] in
+                    guard let self = self else { return }
                     self.gifConverter.createGIF(form: self.capturedImages, saveableURL: nil, loopCount: 1, frameDelay: 0, onFinished: { [weak self] url in
                         if let url = url {
                             print("finished!!!!!!!!!!!!!!!!!!!")
-                            self?.gifURL.accept(url)
                             let data: NSData = NSData(contentsOf: url)!
-                            UIPasteboard.general.setData(data as Data, forPasteboardType: "com.compuserve.gif")
-                            self?.gifFinished.accept(())
+                            self?.gifFinished.accept(data as Data)
                         }
                     })
                 }

@@ -34,7 +34,7 @@ extension Home {
             imageView.clear()
         }
         
-        func configure(with data: Giff.Data) {
+        func configure(with data: Giff.Content) {
             guard let link = data.images?.downsized?.url,
                   let hight = Int(data.images?.downsized?.height ?? "0"),
                   let width = Int(data.images?.downsized?.width ?? "0"),

@@ -77,7 +77,7 @@ private extension Home.ViewModel {
                 switch item {
                 case .giff(let data):
                     self?._loading.accept(true)
-                    self?.copy(giff: data.images?.downsized?.url)
+                    self?.copy(giff: data.images?.original?.url)
                     return "Item Copied!!!"
                 }
             }.bind(to: _showFloatingMassage)

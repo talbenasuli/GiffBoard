@@ -191,6 +191,6 @@ extension Home.ViewController: UICollectionViewDelegateFlowLayout {
 extension Home.ViewController {
     
     enum CellType {
-        case giff(data: Giff.Data)
+        case giff(data: Giff.Content)
     }
 }

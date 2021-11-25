@@ -15,13 +15,15 @@ struct GifPresenterViewModelInput {
     var buttonTitle: String
     
     var bottomButtonTapped: PublishRelay<Void>
-    var gifFinished: PublishRelay<Void>
+    var gifFinished: PublishRelay<Data>
     var undoTapped: PublishRelay<Void>
-}
+ }
 
 struct GifPresenterViewModelOutput {
     var loading: Driver<Bool>
     var undoTapped: Driver<Void>
+    var done: Driver<Void>
+    var gifCopied: Driver<String>
 }
 
 protocol GifPresenterViewModelType {

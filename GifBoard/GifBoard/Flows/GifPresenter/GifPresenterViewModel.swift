@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import RxCocoa
 import RxSwift
+import Disk
 
 extension Giff {
     
@@ -17,26 +18,55 @@ extension Giff {
         var input: GifPresenterViewModelInput
         var output: GifPresenterViewModelOutput
         
+        private var finishedProcess = false
+        private var gifData: Data?
+        private let loading = BehaviorRelay<Bool>(value: false)
+
         let disposeBag = DisposeBag()
+                
+        init(images: [UIImage],
+             animationDuration: TimeInterval) {
         
-        init(images: [UIImage], animationDuration: TimeInterval) {
+            input = GifPresenterViewModelInput(images: images, animationDuration: animationDuration, buttonTitle: "Save", bottomButtonTapped: PublishRelay<Void>(), gifFinished: PublishRelay<Data>(), undoTapped: PublishRelay<Void>())
             
-            input = GifPresenterViewModelInput(images: images, animationDuration: animationDuration, buttonTitle: "Save", bottomButtonTapped: PublishRelay<Void>(), gifFinished: PublishRelay<Void>(), undoTapped: PublishRelay<Void>())
+            let done = PublishRelay<Void>()
+            let gifCopied = PublishRelay<String>()
+
+            output = GifPresenterViewModelOutput(loading: loading.asDriver(onErrorDriveWith: .never()),
+                                                 undoTapped: input.undoTapped.asDriver(onErrorDriveWith: .never()),
+                                                 done: done.asDriver(onErrorDriveWith: .never()),
+                                                 gifCopied: gifCopied.asDriver(onErrorDriveWith: .never()))
             
-            let loading = BehaviorRelay<Bool>(value: false)
+            func handleGif(_ data: Data) {
+                UIPasteboard.general.setData(data, forPasteboardType: "com.compuserve.gif")
+
+                do { // TBA NTD add handler for local storage + make it rx + make it on other thread
+                    try Disk.append(data, to: "mineGif.json", in: .documents)
+                } catch { print("fail to save gif")}
+                
+                loading.accept(false)
+                done.accept(())
+            }
             
             input.bottomButtonTapped
-                .map { return true }
-                .bind(to: loading)
-                .disposed(by: disposeBag)
+                .subscribe(onNext: { [weak self] in
+                    self?.loading.accept(true)
+                    if self?.finishedProcess == true, let data = self?.gifData {
+                        handleGif(data)
+                    }
+                }).disposed(by: disposeBag)
             
             input.gifFinished
-                .map { return false }
-                .bind(to: loading)
-                .disposed(by: disposeBag)
-            
-            output = GifPresenterViewModelOutput(loading: loading.asDriver(onErrorDriveWith: .never()),
-                                                 undoTapped: input.undoTapped.asDriver(onErrorDriveWith: .never()))
+                .subscribe(onNext: { [weak self] data in
+                    let userTapSave = self?.loading.value == true
+                    
+                    if userTapSave {
+                        handleGif(data)
+                    } else {
+                        self?.finishedProcess = true
+                        self?.gifData = data
+                    }
+                }).disposed(by: disposeBag)
         }
     }
 }
