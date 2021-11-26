@@ -15,7 +15,7 @@ extension UIFont {
         var value: UIFont {
             switch self {
             case .header1: return UIFont.boldSystemFont(ofSize: 50)
-            case .toast: return UIFont.italicSystemFont(ofSize: 12)
+            case .toast: return UIFont.italicSystemFont(ofSize: 60)
             }
         }
     }
