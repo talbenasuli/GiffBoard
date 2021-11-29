@@ -61,6 +61,7 @@
 		22E3C22325F9078E00CBB955 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C22225F9078E00CBB955 /* Fonts.swift */; };
 		22E3C22B25F9087700CBB955 /* HomeViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */; };
 		22E3C28125FA10CB00CBB955 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C28025FA10CB00CBB955 /* Colors.swift */; };
+		22F3583A275566C4001E2DB8 /* GifsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F35839275566C4001E2DB8 /* GifsViewController.swift */; };
 		22F663392688894100A82446 /* Rx+UINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F663382688894100A82446 /* Rx+UINavigation.swift */; };
 		22F6633B26888AF900A82446 /* Rx+Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6633A26888AF900A82446 /* Rx+Coordinator.swift */; };
 		22F6633F2688AA3300A82446 /* ViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6633E2688AA3300A82446 /* ViewAnimations.swift */; };
@@ -149,6 +150,7 @@
 		22E3C22225F9078E00CBB955 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelType.swift; sourceTree = "<group>"; };
 		22E3C28025FA10CB00CBB955 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		22F35839275566C4001E2DB8 /* GifsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifsViewController.swift; sourceTree = "<group>"; };
 		22F663382688894100A82446 /* Rx+UINavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UINavigation.swift"; sourceTree = "<group>"; };
 		22F6633A26888AF900A82446 /* Rx+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Coordinator.swift"; sourceTree = "<group>"; };
 		22F6633E2688AA3300A82446 /* ViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAnimations.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 		22E3C11325F7BFE600CBB955 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				22F35838275566B2001E2DB8 /* Test */,
 				221E67012742F493004D8308 /* GifPresenter */,
 				2218C8E92675F58E0058BE63 /* CreateGiff */,
 				22E3C21325F8FD0700CBB955 /* Home */,
@@ -492,6 +495,14 @@
 				2246AB4C25FE1590001B2AFA /* Pedding.swift */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		22F35838275566B2001E2DB8 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				22F35839275566C4001E2DB8 /* GifsViewController.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		22F6633C2688A9F800A82446 /* Animations */ = {
@@ -815,6 +826,7 @@
 				2218C8F62675FB6C0058BE63 /* CreateGiffCoordinator.swift in Sources */,
 				2246AB4D25FE1590001B2AFA /* Pedding.swift in Sources */,
 				221E67032742F4BA004D8308 /* GifPresenterViewModelType.swift in Sources */,
+				22F3583A275566C4001E2DB8 /* GifsViewController.swift in Sources */,
 				22E3C22B25F9087700CBB955 /* HomeViewModelType.swift in Sources */,
 				2246AB4325FE0E26001B2AFA /* SegmentedControlBuilder.swift in Sources */,
 				22DFAD88268A6E4E00CD40D7 /* GifConverter.swift in Sources */,

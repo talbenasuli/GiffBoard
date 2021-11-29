@@ -1,5 +1,16 @@
 PODS:
   - Disk (0.6.4)
+  - Giphy (2.1.14):
+    - libwebp
+  - libwebp (1.2.1):
+    - libwebp/demux (= 1.2.1)
+    - libwebp/mux (= 1.2.1)
+    - libwebp/webp (= 1.2.1)
+  - libwebp/demux (1.2.1):
+    - libwebp/webp
+  - libwebp/mux (1.2.1):
+    - libwebp/demux
+  - libwebp/webp (1.2.1)
   - lottie-ios (3.1.8)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -15,6 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - Disk
+  - Giphy
   - lottie-ios
   - RxCocoa
   - RxGesture
@@ -25,6 +37,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Disk
+    - Giphy
+    - libwebp
     - lottie-ios
     - RxCocoa
     - RxGesture
@@ -35,6 +49,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e
+  Giphy: 9fd715c66d2387a729adf1426a8816bba9bce057
+  libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxGesture: d6bd7447ca3a596c7a9702a6a2b6a2bb5d8bae54
@@ -43,6 +59,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
 
-PODFILE CHECKSUM: 45cccd73acce932f3016bfa2e39130cae8e25d49
+PODFILE CHECKSUM: ca382467f53c0ba82bc5ef955bb56fafc2a4b915
 
 COCOAPODS: 1.10.1
