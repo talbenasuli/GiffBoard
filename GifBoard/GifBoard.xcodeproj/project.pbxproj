@@ -66,9 +66,8 @@
 		22E3C22325F9078E00CBB955 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C22225F9078E00CBB955 /* Fonts.swift */; };
 		22E3C22B25F9087700CBB955 /* HomeViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */; };
 		22E3C28125FA10CB00CBB955 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C28025FA10CB00CBB955 /* Colors.swift */; };
-		22F3583A275566C4001E2DB8 /* GifsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F35839275566C4001E2DB8 /* GifsViewController.swift */; };
-		22F358402755783C001E2DB8 /* MyGifsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3583F2755783C001E2DB8 /* MyGifsViewController.swift */; };
-		22F3584227557868001E2DB8 /* MyGifsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3584127557868001E2DB8 /* MyGifsViewModelType.swift */; };
+		22F358402755783C001E2DB8 /* VerticalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3583F2755783C001E2DB8 /* VerticalCollectionViewController.swift */; };
+		22F3584227557868001E2DB8 /* VerticalCollectionViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3584127557868001E2DB8 /* VerticalCollectionViewModelType.swift */; };
 		22F358442755788D001E2DB8 /* MyGifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F358432755788D001E2DB8 /* MyGifs.swift */; };
 		22F3584627557940001E2DB8 /* MyGifsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */; };
 		22F35848275579E2001E2DB8 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F35847275579E2001E2DB8 /* TabCoordinator.swift */; };
@@ -167,9 +166,8 @@
 		22E3C22225F9078E00CBB955 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelType.swift; sourceTree = "<group>"; };
 		22E3C28025FA10CB00CBB955 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		22F35839275566C4001E2DB8 /* GifsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifsViewController.swift; sourceTree = "<group>"; };
-		22F3583F2755783C001E2DB8 /* MyGifsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifsViewController.swift; sourceTree = "<group>"; };
-		22F3584127557868001E2DB8 /* MyGifsViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifsViewModelType.swift; sourceTree = "<group>"; };
+		22F3583F2755783C001E2DB8 /* VerticalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCollectionViewController.swift; sourceTree = "<group>"; };
+		22F3584127557868001E2DB8 /* VerticalCollectionViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCollectionViewModelType.swift; sourceTree = "<group>"; };
 		22F358432755788D001E2DB8 /* MyGifs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifs.swift; sourceTree = "<group>"; };
 		22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifsCoordinator.swift; sourceTree = "<group>"; };
 		22F35847275579E2001E2DB8 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
@@ -284,9 +282,9 @@
 		221E67012742F493004D8308 /* GifPresenter */ = {
 			isa = PBXGroup;
 			children = (
-				22DFAD85268A633800CD40D7 /* GifPresenterViewController.swift */,
 				221E67022742F4BA004D8308 /* GifPresenterViewModelType.swift */,
 				221E67042742F8E6004D8308 /* GifPresenterViewModel.swift */,
+				22DFAD85268A633800CD40D7 /* GifPresenterViewController.swift */,
 			);
 			path = GifPresenter;
 			sourceTree = "<group>";
@@ -306,6 +304,15 @@
 				22255C2A275A417F00662BD6 /* MyGifLocalRepo.swift */,
 			);
 			path = Repo;
+			sourceTree = "<group>";
+		};
+		22255C2D275A47B700662BD6 /* VerticalCollection */ = {
+			isa = PBXGroup;
+			children = (
+				22F3584127557868001E2DB8 /* VerticalCollectionViewModelType.swift */,
+				22F3583F2755783C001E2DB8 /* VerticalCollectionViewController.swift */,
+			);
+			path = VerticalCollection;
 			sourceTree = "<group>";
 		};
 		2246ABE625FE3361001B2AFA /* CollectionView */ = {
@@ -475,9 +482,8 @@
 		22E3C11325F7BFE600CBB955 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				22F35838275566B2001E2DB8 /* Test */,
-				221E67012742F493004D8308 /* GifPresenter */,
 				2218C8E92675F58E0058BE63 /* CreateGiff */,
+				22F3583E2755781C001E2DB8 /* MyGifs */,
 				22E3C21325F8FD0700CBB955 /* Home */,
 			);
 			path = Flows;
@@ -486,6 +492,8 @@
 		22E3C11425F7C00100CBB955 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				22255C2D275A47B700662BD6 /* VerticalCollection */,
+				221E67012742F493004D8308 /* GifPresenter */,
 				2218C8EA2675F5C00058BE63 /* Camera */,
 				22E3C03D25F53C4F00CBB955 /* LaunchScreen */,
 			);
@@ -524,7 +532,6 @@
 			isa = PBXGroup;
 			children = (
 				22E3C21725F8FD8000CBB955 /* HomeCoordinator.swift */,
-				22F3583E2755781C001E2DB8 /* MyGifs */,
 				22F3583D27557809001E2DB8 /* OldHome */,
 			);
 			path = Home;
@@ -541,14 +548,6 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		22F35838275566B2001E2DB8 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				22F35839275566C4001E2DB8 /* GifsViewController.swift */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
 		22F3583D27557809001E2DB8 /* OldHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,12 +562,10 @@
 		22F3583E2755781C001E2DB8 /* MyGifs */ = {
 			isa = PBXGroup;
 			children = (
-				22255C2C275A418300662BD6 /* Repo */,
 				22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */,
+				22255C2C275A418300662BD6 /* Repo */,
 				22F358432755788D001E2DB8 /* MyGifs.swift */,
-				22F3584127557868001E2DB8 /* MyGifsViewModelType.swift */,
 				22F3584927557B7F001E2DB8 /* MyGifsViewModel.swift */,
-				22F3583F2755783C001E2DB8 /* MyGifsViewController.swift */,
 			);
 			path = MyGifs;
 			sourceTree = "<group>";
@@ -853,7 +850,7 @@
 			files = (
 				22DFAD86268A633800CD40D7 /* GifPresenterViewController.swift in Sources */,
 				228239CB274D180800222E16 /* RandomColorLoader.swift in Sources */,
-				22F3584227557868001E2DB8 /* MyGifsViewModelType.swift in Sources */,
+				22F3584227557868001E2DB8 /* VerticalCollectionViewModelType.swift in Sources */,
 				2246AB5225FE193F001B2AFA /* HomeViewModel.swift in Sources */,
 				2218C9072678DD9F0058BE63 /* RXGeneral.swift in Sources */,
 				2218C8EE2675F5DD0058BE63 /* CameraViewModel.swift in Sources */,
@@ -903,9 +900,8 @@
 				22E3C21825F8FD8000CBB955 /* HomeCoordinator.swift in Sources */,
 				2218C8F62675FB6C0058BE63 /* CreateGiffCoordinator.swift in Sources */,
 				2246AB4D25FE1590001B2AFA /* Pedding.swift in Sources */,
-				22F358402755783C001E2DB8 /* MyGifsViewController.swift in Sources */,
+				22F358402755783C001E2DB8 /* VerticalCollectionViewController.swift in Sources */,
 				221E67032742F4BA004D8308 /* GifPresenterViewModelType.swift in Sources */,
-				22F3583A275566C4001E2DB8 /* GifsViewController.swift in Sources */,
 				22E3C22B25F9087700CBB955 /* HomeViewModelType.swift in Sources */,
 				2246AB4325FE0E26001B2AFA /* SegmentedControlBuilder.swift in Sources */,
 				22DFAD88268A6E4E00CD40D7 /* GifConverter.swift in Sources */,

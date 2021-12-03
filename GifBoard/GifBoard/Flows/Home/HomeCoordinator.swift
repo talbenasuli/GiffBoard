@@ -22,16 +22,14 @@ extension Home {
 }
 
 private extension Home.Coordinator {
-    
     func setupTabBar() {
         let coordinators: [TabCoordinator] = [Giff.My.Coordinator()]
         tabBar.viewControllers = coordinators.map { $0.tabViewController }
         show(tabBar, animated: false)
+    }
+}
 
-//        let viewModel = Home.ViewModel()
-//
-//        viewModel.plusTapped.bind {
-////            self.showCreateGiff()
+//Show gify
 ////            let viewController = GiphyViewController()
 ////            viewController.theme = GPHTheme(type: .light)
 ////            viewController.shouldLocalizeSearch = true
@@ -39,33 +37,21 @@ private extension Home.Coordinator {
 ////
 ////            GiphyViewController.trayHeightMultiplier = 0.9
 ////            self.navigationController.present(viewController, animated: true)
-//        }.disposed(by: viewModel.disposeBag)
+//extension Home.Coordinator: GiphyDelegate {
 //
-//        let vc = Home.ViewController(viewModel: viewModel)
+//    func didDismiss(controller: GiphyViewController?) {
 //
-    }
-    
-    func showCreateGiff() {
-        guard let presenting = navigationController.last else { return } // TBA NTD add error handling
-        CreateGiff.Coordinator(presentationStyle: .present(presenting: presenting)).start()
-    }
-}
-
-extension Home.Coordinator: GiphyDelegate {
-    
-    func didDismiss(controller: GiphyViewController?) {
-        
-    }
-    
-    func didSelectMedia(giphyViewController: GiphyViewController, media: GPHMedia) {
-        let gifURL = media.url(rendition: .downsizedMedium, fileType: .gif)
-        let url = URL(string: gifURL!)
-        
-        do {
-            let data = try Data(contentsOf: url!)
-            UIPasteboard.general.setData(data, forPasteboardType: "com.compuserve.gif")
-        } catch {
-            print("The file could not be copied")
-        }
-    }
-}
+//    }
+//
+//    func didSelectMedia(giphyViewController: GiphyViewController, media: GPHMedia) {
+//        let gifURL = media.url(rendition: .downsizedMedium, fileType: .gif)
+//        let url = URL(string: gifURL!)
+//
+//        do {
+//            let data = try Data(contentsOf: url!)
+//            UIPasteboard.general.setData(data, forPasteboardType: "com.compuserve.gif")
+//        } catch {
+//            print("The file could not be copied")
+//        }
+//    }
+//}

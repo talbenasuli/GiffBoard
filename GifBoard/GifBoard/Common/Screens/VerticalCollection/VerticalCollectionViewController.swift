@@ -7,9 +7,7 @@
 
 import UIKit
 
-extension Giff.My {
-    
-    final class ViewContorller: UIViewController, LoaderContainer {
+    final class VerticalCollectionViewController: UIViewController, LoaderContainer {
         
         var loader: Loader = LottieLoader(animationPath: "gifLoader")
             .contentMode(.scaleAspectFit)
@@ -21,9 +19,9 @@ extension Giff.My {
             .keyboardDismissMode(.onDrag)
             .delegate(self)
         
-        private let viewModel: MyGifViewModelType
+        private let viewModel: VerticalCollectionViewModelType
         
-        init(viewModel: MyGifViewModelType) {
+        init(viewModel: VerticalCollectionViewModelType) {
             self.viewModel = viewModel
             super.init(nibName: nil, bundle: nil)
         }
@@ -53,9 +51,8 @@ extension Giff.My {
             }
         }
     }
-}
 
-private extension Giff.My.ViewContorller {
+private extension VerticalCollectionViewController {
     
     func layoutView() {
         view.add(collectionView)
@@ -76,6 +73,6 @@ private extension Giff.My.ViewContorller {
     }
 }
 
-extension Giff.My.ViewContorller: UICollectionViewDelegate {
+extension VerticalCollectionViewController: UICollectionViewDelegate {
     
 }

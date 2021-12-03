@@ -14,10 +14,10 @@ extension Giff.My {
         var tabViewController: UIViewController
         
         init() {
-            let repo = Giff.My.Repo.Base(localRepo: MyGifLocalRepo())
+            let repo = Giff.My.Repo.Base(localRepo: Giff.My.Repo.Local())
             let viewModel = Giff.My.ViewModel(repo: repo)
                         
-            let vc = Giff.My.ViewContorller(viewModel: viewModel)
+            let vc = VerticalCollectionViewController(viewModel: viewModel)
             let nvc = UINavigationController(rootViewController: vc)
             
             vc.tabBarItem = UITabBarItem(title: "MY GIFS",

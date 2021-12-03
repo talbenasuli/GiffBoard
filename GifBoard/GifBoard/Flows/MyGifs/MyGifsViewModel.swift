@@ -12,7 +12,7 @@ import RxRelay
 
 extension Giff.My {
     
-    final class ViewModel: MyGifViewModelType {
+    final class ViewModel: VerticalCollectionViewModelType {
         
         let disposeBag = DisposeBag()
         
@@ -34,8 +34,8 @@ extension Giff.My {
                         .left(buttons: [logo])]
         }
         
-        var input = Giff.My.ViewModelInput()
-        lazy var output = Giff.My.ViewModelOutput(navigationPlusTapped: input.navigationPlusTapped.asDriver(onErrorDriveWith: .never()),
+        var input = VerticalCollectionViewModelInput()
+        lazy var output = VerticalCollectionViewModelOutput(navigationPlusTapped: input.navigationPlusTapped.asDriver(onErrorDriveWith: .never()),
                                              loading: loading.asDriver(onErrorDriveWith: .never()))
         
         private var loading = BehaviorRelay<Bool>(value: false)

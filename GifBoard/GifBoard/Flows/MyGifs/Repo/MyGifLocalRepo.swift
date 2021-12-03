@@ -10,7 +10,6 @@ import RxSwift
 import Disk
 
 protocol MyGifLocalRepo {
-    
     func getMyGifs(page: Int) -> Single<[Data]>
 }
 
