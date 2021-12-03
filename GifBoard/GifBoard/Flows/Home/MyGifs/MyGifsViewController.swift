@@ -9,7 +9,17 @@ import UIKit
 
 extension Giff.My {
     
-    final class ViewContorller: UIViewController {
+    final class ViewContorller: UIViewController, LoaderContainer {
+        
+        var loader: Loader = LottieLoader(animationPath: "gifLoader")
+            .contentMode(.scaleAspectFit)
+            .loopMode(.loop)
+        
+        private let collectionViewLayout = Home.CollectionViewLayout()
+        private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+            .backgroundColor(UIColor.App.white)
+            .keyboardDismissMode(.onDrag)
+            .delegate(self)
         
         private let viewModel: MyGifViewModelType
         
@@ -21,6 +31,8 @@ extension Giff.My {
         override func viewDidLoad() {
             super.viewDidLoad()
             view.backgroundColor = .white
+            layoutView()
+            bindViewModel()
         }
         
         override func viewDidAppear(_ animated: Bool) {
@@ -31,5 +43,39 @@ extension Giff.My {
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+        
+        func addLoader() {
+            view.addSubview(loader)
+            
+            loader.snp.makeConstraints { make in
+                make.width.height.equalTo(300)
+                make.center.equalToSuperview()
+            }
+        }
     }
+}
+
+private extension Giff.My.ViewContorller {
+    
+    func layoutView() {
+        view.add(collectionView)
+        
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func bindViewModel() {
+        
+        collectionView.register(Home.GiffCell.self)
+        
+        viewModel.output.loading
+            .drive(onNext: { [weak self] loading in
+                loading ? self?.showLoader() : self?.hideLoader()
+            }).disposed(by: viewModel.disposeBag)
+    }
+}
+
+extension Giff.My.ViewContorller: UICollectionViewDelegate {
+    
 }

@@ -18,10 +18,13 @@ extension Giff.My {
     
     struct ViewModelOutput {
         var navigationPlusTapped: Driver<Void>
+        var loading: Driver<Bool>
+//        var collectionItems: Driver
     }
 }
 
 protocol MyGifViewModelType: NavigaitonViewModel {
     var input: Giff.My.ViewModelInput { get }
     var output: Giff.My.ViewModelOutput { get }
+    var disposeBag: DisposeBag { get }
 }

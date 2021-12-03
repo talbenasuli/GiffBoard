@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LoaderContainer {
+protocol LoaderContainer: AnyObject {
     func showLoader()
     func hideLoader()
     func addLoader()

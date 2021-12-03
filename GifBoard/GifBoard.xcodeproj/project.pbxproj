@@ -27,6 +27,11 @@
 		2218C9072678DD9F0058BE63 /* RXGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C9062678DD9F0058BE63 /* RXGeneral.swift */; };
 		221E67032742F4BA004D8308 /* GifPresenterViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E67022742F4BA004D8308 /* GifPresenterViewModelType.swift */; };
 		221E67052742F8E6004D8308 /* GifPresenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E67042742F8E6004D8308 /* GifPresenterViewModel.swift */; };
+		22255C22275A368F00662BD6 /* LottieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22255C21275A368F00662BD6 /* LottieLoader.swift */; };
+		22255C24275A387700662BD6 /* LottieAnimationViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22255C23275A387700662BD6 /* LottieAnimationViewBuilder.swift */; };
+		22255C27275A3AF400662BD6 /* gifLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 22255C26275A3AF400662BD6 /* gifLoader.json */; };
+		22255C29275A408E00662BD6 /* MyGifRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22255C28275A408E00662BD6 /* MyGifRepo.swift */; };
+		22255C2B275A417F00662BD6 /* MyGifLocalRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22255C2A275A417F00662BD6 /* MyGifLocalRepo.swift */; };
 		2246AB3D25FA5B1A001B2AFA /* SearchBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB3C25FA5B1A001B2AFA /* SearchBarBuilder.swift */; };
 		2246AB4325FE0E26001B2AFA /* SegmentedControlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB4225FE0E26001B2AFA /* SegmentedControlBuilder.swift */; };
 		2246AB4825FE1575001B2AFA /* SnapKitBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */; };
@@ -35,7 +40,7 @@
 		2246ABE825FE3378001B2AFA /* HomeCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246ABE725FE3378001B2AFA /* HomeCollectionViewLayout.swift */; };
 		2246AC2D25FE37E4001B2AFA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AC2C25FE37E4001B2AFA /* NetworkManager.swift */; };
 		2246AC3225FE38AC001B2AFA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AC3125FE38AC001B2AFA /* NetworkRequest.swift */; };
-		228239C4274D050F00222E16 /* Rx+LoaderCommonLoaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228239C3274D050F00222E16 /* Rx+LoaderCommonLoaderButton.swift */; };
+		228239C4274D050F00222E16 /* Rx+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228239C3274D050F00222E16 /* Rx+Loader.swift */; };
 		228239C9274D17F100222E16 /* CommonLoaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228239C8274D17F100222E16 /* CommonLoaderButton.swift */; };
 		228239CB274D180800222E16 /* RandomColorLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228239CA274D180800222E16 /* RandomColorLoader.swift */; };
 		22B01F4B2670F0AF00AF474C /* MessagesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B01F4A2670F0AF00AF474C /* MessagesBuilder.swift */; };
@@ -117,6 +122,11 @@
 		2218C9062678DD9F0058BE63 /* RXGeneral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXGeneral.swift; sourceTree = "<group>"; };
 		221E67022742F4BA004D8308 /* GifPresenterViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifPresenterViewModelType.swift; sourceTree = "<group>"; };
 		221E67042742F8E6004D8308 /* GifPresenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifPresenterViewModel.swift; sourceTree = "<group>"; };
+		22255C21275A368F00662BD6 /* LottieLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieLoader.swift; sourceTree = "<group>"; };
+		22255C23275A387700662BD6 /* LottieAnimationViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimationViewBuilder.swift; sourceTree = "<group>"; };
+		22255C26275A3AF400662BD6 /* gifLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gifLoader.json; sourceTree = "<group>"; };
+		22255C28275A408E00662BD6 /* MyGifRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifRepo.swift; sourceTree = "<group>"; };
+		22255C2A275A417F00662BD6 /* MyGifLocalRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifLocalRepo.swift; sourceTree = "<group>"; };
 		2246AB3C25FA5B1A001B2AFA /* SearchBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarBuilder.swift; sourceTree = "<group>"; };
 		2246AB4225FE0E26001B2AFA /* SegmentedControlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlBuilder.swift; sourceTree = "<group>"; };
 		2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitBuilder.swift; sourceTree = "<group>"; };
@@ -125,7 +135,7 @@
 		2246ABE725FE3378001B2AFA /* HomeCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewLayout.swift; sourceTree = "<group>"; };
 		2246AC2C25FE37E4001B2AFA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2246AC3125FE38AC001B2AFA /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
-		228239C3274D050F00222E16 /* Rx+LoaderCommonLoaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+LoaderCommonLoaderButton.swift"; sourceTree = "<group>"; };
+		228239C3274D050F00222E16 /* Rx+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Loader.swift"; sourceTree = "<group>"; };
 		228239C8274D17F100222E16 /* CommonLoaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonLoaderButton.swift; sourceTree = "<group>"; };
 		228239CA274D180800222E16 /* RandomColorLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColorLoader.swift; sourceTree = "<group>"; };
 		22B01F4A2670F0AF00AF474C /* MessagesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesBuilder.swift; sourceTree = "<group>"; };
@@ -281,6 +291,23 @@
 			path = GifPresenter;
 			sourceTree = "<group>";
 		};
+		22255C25275A3AE100662BD6 /* LottieFiles */ = {
+			isa = PBXGroup;
+			children = (
+				22255C26275A3AF400662BD6 /* gifLoader.json */,
+			);
+			path = LottieFiles;
+			sourceTree = "<group>";
+		};
+		22255C2C275A418300662BD6 /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+				22255C28275A408E00662BD6 /* MyGifRepo.swift */,
+				22255C2A275A417F00662BD6 /* MyGifLocalRepo.swift */,
+			);
+			path = Repo;
+			sourceTree = "<group>";
+		};
 		2246ABE625FE3361001B2AFA /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +340,7 @@
 				2246AB4225FE0E26001B2AFA /* SegmentedControlBuilder.swift */,
 				220AE28E260229910096F318 /* CollectionViewBuilder.swift */,
 				22B01F4A2670F0AF00AF474C /* MessagesBuilder.swift */,
+				22255C23275A387700662BD6 /* LottieAnimationViewBuilder.swift */,
 				2218C8E72675ECA80058BE63 /* ButtonBuilder.swift */,
 			);
 			path = Builders;
@@ -329,8 +357,10 @@
 		228239C7274D17D900222E16 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
+				22255C25275A3AE100662BD6 /* LottieFiles */,
 				228239C8274D17F100222E16 /* CommonLoaderButton.swift */,
 				228239CA274D180800222E16 /* RandomColorLoader.swift */,
+				22255C21275A368F00662BD6 /* LottieLoader.swift */,
 			);
 			path = Loaders;
 			sourceTree = "<group>";
@@ -361,7 +391,7 @@
 				22F663382688894100A82446 /* Rx+UINavigation.swift */,
 				22F663402688B6BF00A82446 /* Rx+Animations.swift */,
 				22F6633A26888AF900A82446 /* Rx+Coordinator.swift */,
-				228239C3274D050F00222E16 /* Rx+LoaderCommonLoaderButton.swift */,
+				228239C3274D050F00222E16 /* Rx+Loader.swift */,
 			);
 			path = RX;
 			sourceTree = "<group>";
@@ -533,6 +563,7 @@
 		22F3583E2755781C001E2DB8 /* MyGifs */ = {
 			isa = PBXGroup;
 			children = (
+				22255C2C275A418300662BD6 /* Repo */,
 				22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */,
 				22F358432755788D001E2DB8 /* MyGifs.swift */,
 				22F3584127557868001E2DB8 /* MyGifsViewModelType.swift */,
@@ -692,6 +723,7 @@
 			files = (
 				22E3C00525F5392D00CBB955 /* LaunchScreen.storyboard in Resources */,
 				22E3C00225F5392D00CBB955 /* Assets.xcassets in Resources */,
+				22255C27275A3AF400662BD6 /* gifLoader.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +861,7 @@
 				22E3C16725F7C78700CBB955 /* AppCoordinator.swift in Sources */,
 				22F3584C27558116001E2DB8 /* NavigaitonViewModel.swift in Sources */,
 				22E3C1A425F8F34A00CBB955 /* NavigationBuilder.swift in Sources */,
+				22255C22275A368F00662BD6 /* LottieLoader.swift in Sources */,
 				220AE15925FF6B1D0096F318 /* GiffBody.swift in Sources */,
 				22F35848275579E2001E2DB8 /* TabCoordinator.swift in Sources */,
 				2218C8EC2675F5D30058BE63 /* CameraViewController.swift in Sources */,
@@ -838,14 +871,16 @@
 				22E3C17C25F7CE2900CBB955 /* ImageViewBuilder.swift in Sources */,
 				22E3C28125FA10CB00CBB955 /* Colors.swift in Sources */,
 				220AE24C2601018C0096F318 /* HomeRouter.swift in Sources */,
+				22255C2B275A417F00662BD6 /* MyGifLocalRepo.swift in Sources */,
 				22E3C19025F7D09C00CBB955 /* ViewBuilder.swift in Sources */,
 				22E3C22325F9078E00CBB955 /* Fonts.swift in Sources */,
 				2218C8E82675ECA80058BE63 /* ButtonBuilder.swift in Sources */,
 				228239C9274D17F100222E16 /* CommonLoaderButton.swift in Sources */,
 				2218C8F22675F7B80058BE63 /* Camera.swift in Sources */,
 				22B01F542670F87C00AF474C /* Rx+UIViewController.swift in Sources */,
-				228239C4274D050F00222E16 /* Rx+LoaderCommonLoaderButton.swift in Sources */,
+				228239C4274D050F00222E16 /* Rx+Loader.swift in Sources */,
 				22B01F592671004F00AF474C /* LoaderContainer.swift in Sources */,
+				22255C24275A387700662BD6 /* LottieAnimationViewBuilder.swift in Sources */,
 				2246AC3225FE38AC001B2AFA /* NetworkRequest.swift in Sources */,
 				22F3584627557940001E2DB8 /* MyGifsCoordinator.swift in Sources */,
 				22F663412688B6BF00A82446 /* Rx+Animations.swift in Sources */,
@@ -875,6 +910,7 @@
 				2246AB4325FE0E26001B2AFA /* SegmentedControlBuilder.swift in Sources */,
 				22DFAD88268A6E4E00CD40D7 /* GifConverter.swift in Sources */,
 				22F663392688894100A82446 /* Rx+UINavigation.swift in Sources */,
+				22255C29275A408E00662BD6 /* MyGifRepo.swift in Sources */,
 				2246AB3D25FA5B1A001B2AFA /* SearchBarBuilder.swift in Sources */,
 				22E3C1FF25F8F8F000CBB955 /* ColorBuilder.swift in Sources */,
 				22E3BFF925F5392A00CBB955 /* AppDelegate.swift in Sources */,

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import RxRelay
 
 extension Giff.My {
     
@@ -34,10 +35,29 @@ extension Giff.My {
         }
         
         var input = Giff.My.ViewModelInput()
-        var output: Giff.My.ViewModelOutput
+        lazy var output = Giff.My.ViewModelOutput(navigationPlusTapped: input.navigationPlusTapped.asDriver(onErrorDriveWith: .never()),
+                                             loading: loading.asDriver(onErrorDriveWith: .never()))
         
-        init() {
-            output = Giff.My.ViewModelOutput(navigationPlusTapped: input.navigationPlusTapped.asDriver(onErrorDriveWith: .never()))
+        private var loading = BehaviorRelay<Bool>(value: false)
+        
+        private var repo: Repo.Base
+        
+        init(repo: Repo.Base) {
+            self.repo = repo
+            getGifs()
         }
+    }
+}
+
+private extension Giff.My.ViewModel {
+    
+    func getGifs() {
+        
+//        let gifs = repo.getMyGifs(page: 0)
+//            .map { }
+//        
+//        repo.getMyGifs(page: 0)
+//            .asObservable()
+//            .bind(to: <#T##Variable<[Data]>#>)
     }
 }

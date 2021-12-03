@@ -14,7 +14,8 @@ extension Giff.My {
         var tabViewController: UIViewController
         
         init() {
-            let viewModel = Giff.My.ViewModel()
+            let repo = Giff.My.Repo.Base(localRepo: MyGifLocalRepo())
+            let viewModel = Giff.My.ViewModel(repo: repo)
                         
             let vc = Giff.My.ViewContorller(viewModel: viewModel)
             let nvc = UINavigationController(rootViewController: vc)
