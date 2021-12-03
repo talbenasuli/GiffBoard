@@ -76,9 +76,9 @@ private extension Camera.ViewController {
             .bind(to: viewModel.input.cancelTapped)
             .disposed(by: disposeBag)
         
-        navigation(style: .background(color: .clear),
+        navigation(styles: [.background(color: .clear),
                    .separator(.clear),
-                   .right(buttons: [cancelButton]))
+                   .right(buttons: [cancelButton])])
     }
     
     func bindViewModel() {

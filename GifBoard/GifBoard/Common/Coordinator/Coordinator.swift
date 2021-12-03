@@ -74,10 +74,8 @@ extension Coordinators {
                 navigationController.pushViewController(viewController, animated: true)
                 
             case .window(let window):
-                let nvc = UINavigationController(rootViewController: viewController)
-                navigationController = nvc
                 window.makeKeyAndVisible()
-                window.rootViewController = navigationController
+                window.rootViewController = viewController
             }
             
             didShowFirst = true

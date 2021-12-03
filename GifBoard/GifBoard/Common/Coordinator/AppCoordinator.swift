@@ -13,6 +13,13 @@ extension App {
     
     final class Coordinator: Coordinators.Base {
         
+        private let window: UIWindow
+        
+        init(window: UIWindow) {
+            self.window = window
+            super.init(presentationStyle: .window(window))
+        }
+        
         override func start() {
             showSplash()
         }
@@ -31,7 +38,6 @@ private extension App.Coordinator {
     }
     
     func showHome() {
-        guard let presenting = navigationController.viewControllers.first else { return }
-        Home.Coordinator(presentationStyle: .present(presenting: presenting)).start()
+        Home.Coordinator(presentationStyle: .window(window)).start()
     }
 }

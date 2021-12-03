@@ -60,9 +60,9 @@ extension Giff {
                 .bind(to: viewModel.input.undoTapped)
                 .disposed(by: disposeBag)
             
-            navigation(style: .background(color: .clear),
+            navigation(styles: [.background(color: .clear),
                        .separator(.clear),
-                       .left(buttons: [undo]))
+                       .left(buttons: [undo])])
         }
         
         private func layoutView() {

@@ -18,10 +18,11 @@ enum BarStyle {
 }
 
 extension UIViewController {
-    func navigation(style: BarStyle...) {
+    
+    func navigation(styles: [BarStyle]) {
         self.navigationItem.hidesBackButton = true
         
-        for option in style {
+        for option in styles {
             
             switch option {
             

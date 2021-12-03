@@ -49,6 +49,9 @@ extension Home {
         init(viewModel: HomeViewModelType = ViewModel()) {
             self.viewModel = viewModel
             super.init(nibName: nil, bundle: nil)
+            tabBarItem = UITabBarItem.init(title: "MY GIFS",
+                                           image: UIImage(named: "gif"),
+                                           selectedImage: UIImage(named: "gif_selected"))
             addConstraints()
         }
         
@@ -60,7 +63,7 @@ extension Home {
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
-            navigation(style: .none)
+//            navigation(style: .none)
         }
         
         override func viewDidLayoutSubviews() {

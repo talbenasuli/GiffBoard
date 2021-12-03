@@ -10,6 +10,7 @@ target 'GifBoard' do
   pod 'lottie-ios'
   pod 'Disk'
   pod 'Giphy'
+  pod 'lottie-ios'
   use_frameworks!
 
   # Pods for GifBoard

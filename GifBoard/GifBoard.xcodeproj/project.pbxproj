@@ -62,6 +62,13 @@
 		22E3C22B25F9087700CBB955 /* HomeViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */; };
 		22E3C28125FA10CB00CBB955 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3C28025FA10CB00CBB955 /* Colors.swift */; };
 		22F3583A275566C4001E2DB8 /* GifsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F35839275566C4001E2DB8 /* GifsViewController.swift */; };
+		22F358402755783C001E2DB8 /* MyGifsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3583F2755783C001E2DB8 /* MyGifsViewController.swift */; };
+		22F3584227557868001E2DB8 /* MyGifsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3584127557868001E2DB8 /* MyGifsViewModelType.swift */; };
+		22F358442755788D001E2DB8 /* MyGifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F358432755788D001E2DB8 /* MyGifs.swift */; };
+		22F3584627557940001E2DB8 /* MyGifsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */; };
+		22F35848275579E2001E2DB8 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F35847275579E2001E2DB8 /* TabCoordinator.swift */; };
+		22F3584A27557B7F001E2DB8 /* MyGifsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3584927557B7F001E2DB8 /* MyGifsViewModel.swift */; };
+		22F3584C27558116001E2DB8 /* NavigaitonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3584B27558116001E2DB8 /* NavigaitonViewModel.swift */; };
 		22F663392688894100A82446 /* Rx+UINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F663382688894100A82446 /* Rx+UINavigation.swift */; };
 		22F6633B26888AF900A82446 /* Rx+Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6633A26888AF900A82446 /* Rx+Coordinator.swift */; };
 		22F6633F2688AA3300A82446 /* ViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6633E2688AA3300A82446 /* ViewAnimations.swift */; };
@@ -151,6 +158,13 @@
 		22E3C22A25F9087700CBB955 /* HomeViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelType.swift; sourceTree = "<group>"; };
 		22E3C28025FA10CB00CBB955 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		22F35839275566C4001E2DB8 /* GifsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifsViewController.swift; sourceTree = "<group>"; };
+		22F3583F2755783C001E2DB8 /* MyGifsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifsViewController.swift; sourceTree = "<group>"; };
+		22F3584127557868001E2DB8 /* MyGifsViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifsViewModelType.swift; sourceTree = "<group>"; };
+		22F358432755788D001E2DB8 /* MyGifs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifs.swift; sourceTree = "<group>"; };
+		22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifsCoordinator.swift; sourceTree = "<group>"; };
+		22F35847275579E2001E2DB8 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		22F3584927557B7F001E2DB8 /* MyGifsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifsViewModel.swift; sourceTree = "<group>"; };
+		22F3584B27558116001E2DB8 /* NavigaitonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigaitonViewModel.swift; sourceTree = "<group>"; };
 		22F663382688894100A82446 /* Rx+UINavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UINavigation.swift"; sourceTree = "<group>"; };
 		22F6633A26888AF900A82446 /* Rx+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Coordinator.swift"; sourceTree = "<group>"; };
 		22F6633E2688AA3300A82446 /* ViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAnimations.swift; sourceTree = "<group>"; };
@@ -452,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				22E3C11625F7C04C00CBB955 /* Coordinator.swift */,
+				22F35847275579E2001E2DB8 /* TabCoordinator.swift */,
 				22E3C16625F7C78700CBB955 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
@@ -470,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				22B01F582671004F00AF474C /* LoaderContainer.swift */,
+				22F3584B27558116001E2DB8 /* NavigaitonViewModel.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -478,10 +494,8 @@
 			isa = PBXGroup;
 			children = (
 				22E3C21725F8FD8000CBB955 /* HomeCoordinator.swift */,
-				229278FF2670EA5A00C548E4 /* Repo */,
-				229278FE2670EA4D00C548E4 /* ViewModel */,
-				2246ABE625FE3361001B2AFA /* CollectionView */,
-				22E3C21C25F9073100CBB955 /* HomeViewController.swift */,
+				22F3583E2755781C001E2DB8 /* MyGifs */,
+				22F3583D27557809001E2DB8 /* OldHome */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -503,6 +517,29 @@
 				22F35839275566C4001E2DB8 /* GifsViewController.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		22F3583D27557809001E2DB8 /* OldHome */ = {
+			isa = PBXGroup;
+			children = (
+				229278FF2670EA5A00C548E4 /* Repo */,
+				229278FE2670EA4D00C548E4 /* ViewModel */,
+				2246ABE625FE3361001B2AFA /* CollectionView */,
+				22E3C21C25F9073100CBB955 /* HomeViewController.swift */,
+			);
+			path = OldHome;
+			sourceTree = "<group>";
+		};
+		22F3583E2755781C001E2DB8 /* MyGifs */ = {
+			isa = PBXGroup;
+			children = (
+				22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */,
+				22F358432755788D001E2DB8 /* MyGifs.swift */,
+				22F3584127557868001E2DB8 /* MyGifsViewModelType.swift */,
+				22F3584927557B7F001E2DB8 /* MyGifsViewModel.swift */,
+				22F3583F2755783C001E2DB8 /* MyGifsViewController.swift */,
+			);
+			path = MyGifs;
 			sourceTree = "<group>";
 		};
 		22F6633C2688A9F800A82446 /* Animations */ = {
@@ -784,13 +821,16 @@
 			files = (
 				22DFAD86268A633800CD40D7 /* GifPresenterViewController.swift in Sources */,
 				228239CB274D180800222E16 /* RandomColorLoader.swift in Sources */,
+				22F3584227557868001E2DB8 /* MyGifsViewModelType.swift in Sources */,
 				2246AB5225FE193F001B2AFA /* HomeViewModel.swift in Sources */,
 				2218C9072678DD9F0058BE63 /* RXGeneral.swift in Sources */,
 				2218C8EE2675F5DD0058BE63 /* CameraViewModel.swift in Sources */,
 				220AE1F62600AC9B0096F318 /* GiffAPI.swift in Sources */,
 				22E3C16725F7C78700CBB955 /* AppCoordinator.swift in Sources */,
+				22F3584C27558116001E2DB8 /* NavigaitonViewModel.swift in Sources */,
 				22E3C1A425F8F34A00CBB955 /* NavigationBuilder.swift in Sources */,
 				220AE15925FF6B1D0096F318 /* GiffBody.swift in Sources */,
+				22F35848275579E2001E2DB8 /* TabCoordinator.swift in Sources */,
 				2218C8EC2675F5D30058BE63 /* CameraViewController.swift in Sources */,
 				220AE15E25FF6B580096F318 /* GiffResponse.swift in Sources */,
 				2246AC2D25FE37E4001B2AFA /* NetworkManager.swift in Sources */,
@@ -807,6 +847,7 @@
 				228239C4274D050F00222E16 /* Rx+LoaderCommonLoaderButton.swift in Sources */,
 				22B01F592671004F00AF474C /* LoaderContainer.swift in Sources */,
 				2246AC3225FE38AC001B2AFA /* NetworkRequest.swift in Sources */,
+				22F3584627557940001E2DB8 /* MyGifsCoordinator.swift in Sources */,
 				22F663412688B6BF00A82446 /* Rx+Animations.swift in Sources */,
 				22F6633F2688AA3300A82446 /* ViewAnimations.swift in Sources */,
 				2218C9052678D6CB0058BE63 /* RX+CameraSessionController.swift in Sources */,
@@ -815,16 +856,19 @@
 				2218C8F02675F5EB0058BE63 /* CamearaViewModelType.swift in Sources */,
 				22B01F4B2670F0AF00AF474C /* MessagesBuilder.swift in Sources */,
 				220AE2552601183B0096F318 /* HomeGiffCell.swift in Sources */,
+				22F358442755788D001E2DB8 /* MyGifs.swift in Sources */,
 				220AE2432601003A0096F318 /* HomeRepo.swift in Sources */,
 				22E3C11725F7C04C00CBB955 /* Coordinator.swift in Sources */,
 				220AE28F260229920096F318 /* CollectionViewBuilder.swift in Sources */,
 				22E3C03825F53C1D00CBB955 /* LaunchScreenViewController.swift in Sources */,
 				22E3C21D25F9073100CBB955 /* HomeViewController.swift in Sources */,
 				2246ABE825FE3378001B2AFA /* HomeCollectionViewLayout.swift in Sources */,
+				22F3584A27557B7F001E2DB8 /* MyGifsViewModel.swift in Sources */,
 				220AE14C25FE5A9D0096F318 /* Decoder.swift in Sources */,
 				22E3C21825F8FD8000CBB955 /* HomeCoordinator.swift in Sources */,
 				2218C8F62675FB6C0058BE63 /* CreateGiffCoordinator.swift in Sources */,
 				2246AB4D25FE1590001B2AFA /* Pedding.swift in Sources */,
+				22F358402755783C001E2DB8 /* MyGifsViewController.swift in Sources */,
 				221E67032742F4BA004D8308 /* GifPresenterViewModelType.swift in Sources */,
 				22F3583A275566C4001E2DB8 /* GifsViewController.swift in Sources */,
 				22E3C22B25F9087700CBB955 /* HomeViewModelType.swift in Sources */,
