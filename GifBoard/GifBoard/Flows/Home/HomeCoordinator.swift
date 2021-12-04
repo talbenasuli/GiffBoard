@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import GiphyUISDK
 
 enum Home { }
 
@@ -28,30 +27,3 @@ private extension Home.Coordinator {
         show(tabBar, animated: false)
     }
 }
-
-//Show gify
-////            let viewController = GiphyViewController()
-////            viewController.theme = GPHTheme(type: .light)
-////            viewController.shouldLocalizeSearch = true
-////            viewController.delegate = self
-////
-////            GiphyViewController.trayHeightMultiplier = 0.9
-////            self.navigationController.present(viewController, animated: true)
-//extension Home.Coordinator: GiphyDelegate {
-//
-//    func didDismiss(controller: GiphyViewController?) {
-//
-//    }
-//
-//    func didSelectMedia(giphyViewController: GiphyViewController, media: GPHMedia) {
-//        let gifURL = media.url(rendition: .downsizedMedium, fileType: .gif)
-//        let url = URL(string: gifURL!)
-//
-//        do {
-//            let data = try Data(contentsOf: url!)
-//            UIPasteboard.general.setData(data, forPasteboardType: "com.compuserve.gif")
-//        } catch {
-//            print("The file could not be copied")
-//        }
-//    }
-//}

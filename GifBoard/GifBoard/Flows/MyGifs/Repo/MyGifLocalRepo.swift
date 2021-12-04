@@ -27,7 +27,7 @@ extension Giff.My.Repo {
                         let gifs = try Disk.retrieve("mineGif.json", from: .documents, as: [Data].self)
                         single(.success(gifs))
                     } catch let error{
-                        print("fail to save gif")
+                        print("fail to save gif - \(error)")
                         single(.error(error))
                     }
                 }

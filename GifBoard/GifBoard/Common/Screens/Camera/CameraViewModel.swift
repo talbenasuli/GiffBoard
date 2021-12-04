@@ -95,6 +95,7 @@ private extension Camera.ViewModel {
                         if let url = url {
                             print("finished!!!!!!!!!!!!!!!!!!!")
                             let data: NSData = NSData(contentsOf: url)!
+
                             self?.gifFinished.accept(data as Data)
                         }
                     })

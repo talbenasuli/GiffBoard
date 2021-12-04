@@ -40,7 +40,9 @@ extension Giff {
             CGImageDestinationSetProperties(destinationGIF, fileProperties as CFDictionary?)
             
             for image in images {
-                let cgImage = image.cgImage
+                let comppressedData = image.jpegData(compressionQuality: 0.1)
+                let comppressedImage = UIImage(data: comppressedData!)
+                let cgImage = comppressedImage!.cgImage
                 CGImageDestinationAddImage(destinationGIF, cgImage!, gifProperties as CFDictionary?)
             }
             CGImageDestinationFinalize(destinationGIF)

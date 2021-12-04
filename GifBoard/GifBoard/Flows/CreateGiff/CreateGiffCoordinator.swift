@@ -59,4 +59,3 @@ private extension CreateGiff.Coordinator {
         show(viewController)
     }
 }
-

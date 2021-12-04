@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GiphyUISDK
 
 extension Giff.My {
     
@@ -29,6 +30,11 @@ extension Giff.My {
                 .drive(onNext: {
                     self.showCamera()
                 }).disposed(by: viewModel.disposeBag)
+            
+            viewModel.output.navigationGifyTapped
+                .drive(onNext: {
+                    self.showGify()
+                }).disposed(by: viewModel.disposeBag)
         }
     }
 }
@@ -38,4 +44,37 @@ private extension Giff.My.Coordinator {
     func showCamera() {
         CreateGiff.Coordinator(presentationStyle: .present(presenting: tabViewController)).start()
     }
+    
+    func showGify() {
+        let viewController = GiphyViewController()
+        viewController.theme = GPHTheme(type: .light)
+        viewController.shouldLocalizeSearch = true
+        GiphyViewController.trayHeightMultiplier = 0.9
+//        viewController.delegate = self
+        tabViewController.present(viewController, animated: true)
+    }
+    
+    
+
+    ////
+    ////
+    //extension Home.Coordinator: GiphyDelegate {
+    //
+    //    func didDismiss(controller: GiphyViewController?) {
+    //
+    //    }
+    //
+    //    func didSelectMedia(giphyViewController: GiphyViewController, media: GPHMedia) {
+    //        let gifURL = media.url(rendition: .downsizedMedium, fileType: .gif)
+    //        let url = URL(string: gifURL!)
+    //
+    //        do {
+    //            let data = try Data(contentsOf: url!)
+    //            UIPasteboard.general.setData(data, forPasteboardType: "com.compuserve.gif")
+    //        } catch {
+    //            print("The file could not be copied")
+    //        }
+    //    }
+    //}
+
 }

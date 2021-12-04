@@ -16,48 +16,66 @@ extension Giff.My {
         
         let disposeBag = DisposeBag()
         
-        var navigationStyles: [BarStyle] {
-            let rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-                .tintColor(.black)
-            
-            rightButton.rx.tap
-                .bind(to: input.navigationPlusTapped)
-                .disposed(by: disposeBag)
-           
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 117, height: 33))
-            imageView.image = UIImage(named: "navigation_logo")
-            let logo = UIBarButtonItem.init(customView: imageView)
-            
-            return [.background(color: .clear),
-                        .separator(.clear),
-                        .right(buttons: [rightButton]),
-                        .left(buttons: [logo])]
-        }
+        var navigationStyles: [BarStyle] = []
         
         var input = VerticalCollectionViewModelInput()
         lazy var output = VerticalCollectionViewModelOutput(navigationPlusTapped: input.navigationPlusTapped.asDriver(onErrorDriveWith: .never()),
-                                             loading: loading.asDriver(onErrorDriveWith: .never()))
+                                                            loading: loading.asDriver(onErrorDriveWith: .never()),
+                                                            collectionItems: collectionItems.asDriver(onErrorDriveWith: .never()),
+                                                            navigationGifyTapped: gifNavButtonTapped.asDriver(onErrorDriveWith: .never()))
         
         private var loading = BehaviorRelay<Bool>(value: false)
+        private let collectionItems = BehaviorRelay<[VerticalCollectionCellType]>(value: [])
+        private let gifNavButtonTapped = PublishRelay<Void>()
         
         private var repo: Repo.Base
         
         init(repo: Repo.Base) {
             self.repo = repo
+            setupNavigation()
             getGifs()
+        }
+        
+        func item(at index: IndexPath) -> VerticalCollectionCellType {
+            return collectionItems.value[index.row]
         }
     }
 }
 
 private extension Giff.My.ViewModel {
     
-    func getGifs() {
+    func setupNavigation() {
+        let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+            .tintColor(.black)
         
-//        let gifs = repo.getMyGifs(page: 0)
-//            .map { }
-//        
-//        repo.getMyGifs(page: 0)
-//            .asObservable()
-//            .bind(to: <#T##Variable<[Data]>#>)
+        plusButton.rx.tap
+            .bind(to: input.navigationPlusTapped)
+            .disposed(by: disposeBag)
+        
+        let gifsButton = UIBarButtonItem(image: UIImage(named: "nav-gif-icon"), style: .plain, target: nil, action: nil)
+        
+        gifsButton.rx.tap
+            .bind(to: gifNavButtonTapped)
+            .disposed(by: disposeBag)
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 117, height: 33))
+        imageView.image = UIImage(named: "navigation_logo")
+        let logo = UIBarButtonItem.init(customView: imageView)
+        
+        navigationStyles = [.background(color: .clear),
+                            .separator(.clear),
+                            .right(buttons: [plusButton, gifsButton]),
+                            .left(buttons: [logo])]
+    }
+    
+    func getGifs() {
+        repo.getMyGifs(page: 0)
+            .asObservable()
+            .subscribe { data in
+                let items = data.map { VerticalCollectionCellType.gif($0) }
+                self.collectionItems.accept(items)
+            } onError: { error in }
+            .disposed(by: disposeBag)
+
     }
 }

@@ -44,7 +44,7 @@ extension Home {
         
         private let viewModel: HomeViewModelType
         private let disposeBag = DisposeBag()
-        private let collectionViewLayout = Home.CollectionViewLayout()
+        private let collectionViewLayout = VerticalCollectionViewLayout()
         
         init(viewModel: HomeViewModelType = ViewModel()) {
             self.viewModel = viewModel
@@ -113,15 +113,15 @@ private extension Home.ViewController {
     }
     
     func bindViewModel() {
-        collectionView.register(Home.GiffCell.self)
+//        collectionView.register(Home.GiffCell.self)
         viewModel.items
             .drive(collectionView.rx.items) { collectionView, index , data in
                 
                 switch data {
                 case .giff(let data):
-                    let cell: Home.GiffCell = collectionView.dequeueReusableCell(forIndexPath: IndexPath(row: index, section: 0))
-                    cell.configure(with: data)
-                    return cell
+//                    let cell = collectionView.dequeueReusableCell(forIndexPath: IndexPath(row: index, section: 0))
+//                    cell.configure(with: data)
+                    return UICollectionViewCell()
                 }
             }.disposed(by: disposeBag)
         

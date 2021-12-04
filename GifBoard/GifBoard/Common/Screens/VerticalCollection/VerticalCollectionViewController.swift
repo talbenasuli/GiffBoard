@@ -13,11 +13,10 @@ import UIKit
             .contentMode(.scaleAspectFit)
             .loopMode(.loop)
         
-        private let collectionViewLayout = Home.CollectionViewLayout()
+        private let collectionViewLayout = VerticalCollectionViewLayout()
         private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
             .backgroundColor(UIColor.App.white)
             .keyboardDismissMode(.onDrag)
-            .delegate(self)
         
         private let viewModel: VerticalCollectionViewModelType
         
@@ -28,6 +27,7 @@ import UIKit
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            collectionView.register(Giff.My.CollectionCell.self, forCellWithReuseIdentifier: Giff.My.CollectionCell.defaultReuseIdentifier)
             view.backgroundColor = .white
             layoutView()
             bindViewModel()
@@ -58,13 +58,24 @@ private extension VerticalCollectionViewController {
         view.add(collectionView)
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+            make.topMargin.equalToSuperview().offset(.big)
         }
     }
     
     func bindViewModel() {
+    
+        collectionView.rx
+            .setDelegate(self)
+            .disposed(by: viewModel.disposeBag)
         
-        collectionView.register(Home.GiffCell.self)
+        viewModel.output.collectionItems
+            .drive(collectionView.rx.items) { collectionView, index, cellType in
+                
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Giff.My.CollectionCell.defaultReuseIdentifier, for: IndexPath(row: index, section: 0)) as! VerticalCollectionCell
+                cell.configure(with: cellType)
+                return cell
+            }.disposed(by: viewModel.disposeBag)
         
         viewModel.output.loading
             .drive(onNext: { [weak self] loading in
@@ -73,6 +84,20 @@ private extension VerticalCollectionViewController {
     }
 }
 
-extension VerticalCollectionViewController: UICollectionViewDelegate {
+extension VerticalCollectionViewController: UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellType = viewModel.item(at: indexPath)
+        
+        switch cellType {
+        case .gif:
+            let height = 200
+            let width = 130
+
+            let cellWidth = collectionView.frame.width / 2 - self.collectionViewLayout.minimumInteritemSpacing
+            let imageRatio = cellWidth / CGFloat(width)
+            return CGSize(width: cellWidth, height: CGFloat(height) * CGFloat(imageRatio))
+            
+        }
+    }
 }

@@ -136,12 +136,19 @@ final class CameraSessionController: NSObject {
     func takeShot() {
         let settings = AVCapturePhotoSettings()
         let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+        
         let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
-                             kCVPixelBufferWidthKey as String: 1800,
-                             kCVPixelBufferHeightKey as String: 1800]
+                             kCVPixelBufferWidthKey as String: 1,
+                             kCVPixelBufferHeightKey as String: 1]
         settings.previewPhotoFormat = previewFormat
         
-        settings.isHighResolutionPhotoEnabled = true
+        if #available(iOS 13.0, *) {
+            settings.photoQualityPrioritization = .speed
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        settings.isHighResolutionPhotoEnabled = false
         settings.isAutoStillImageStabilizationEnabled = true
         stillImageOutput.capturePhoto(with: settings, delegate: self)
     }

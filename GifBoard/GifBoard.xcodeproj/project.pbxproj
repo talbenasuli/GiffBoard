@@ -13,7 +13,7 @@
 		220AE1F62600AC9B0096F318 /* GiffAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE1F52600AC9B0096F318 /* GiffAPI.swift */; };
 		220AE2432601003A0096F318 /* HomeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2422601003A0096F318 /* HomeRepo.swift */; };
 		220AE24C2601018C0096F318 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE24B2601018C0096F318 /* HomeRouter.swift */; };
-		220AE2552601183B0096F318 /* HomeGiffCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2542601183B0096F318 /* HomeGiffCell.swift */; };
+		220AE2552601183B0096F318 /* MyGifColllectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2542601183B0096F318 /* MyGifColllectionCell.swift */; };
 		220AE277260121F30096F318 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE276260121F30096F318 /* ReusableView.swift */; };
 		220AE28F260229920096F318 /* CollectionViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE28E260229910096F318 /* CollectionViewBuilder.swift */; };
 		2218C8E6267243000058BE63 /* CameraSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C8E5267243000058BE63 /* CameraSessionController.swift */; };
@@ -37,7 +37,7 @@
 		2246AB4825FE1575001B2AFA /* SnapKitBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */; };
 		2246AB4D25FE1590001B2AFA /* Pedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB4C25FE1590001B2AFA /* Pedding.swift */; };
 		2246AB5225FE193F001B2AFA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AB5125FE193E001B2AFA /* HomeViewModel.swift */; };
-		2246ABE825FE3378001B2AFA /* HomeCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246ABE725FE3378001B2AFA /* HomeCollectionViewLayout.swift */; };
+		2246ABE825FE3378001B2AFA /* VerticalCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246ABE725FE3378001B2AFA /* VerticalCollectionViewLayout.swift */; };
 		2246AC2D25FE37E4001B2AFA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AC2C25FE37E4001B2AFA /* NetworkManager.swift */; };
 		2246AC3225FE38AC001B2AFA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AC3125FE38AC001B2AFA /* NetworkRequest.swift */; };
 		228239C4274D050F00222E16 /* Rx+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228239C3274D050F00222E16 /* Rx+Loader.swift */; };
@@ -107,7 +107,7 @@
 		220AE1F52600AC9B0096F318 /* GiffAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiffAPI.swift; sourceTree = "<group>"; };
 		220AE2422601003A0096F318 /* HomeRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepo.swift; sourceTree = "<group>"; };
 		220AE24B2601018C0096F318 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
-		220AE2542601183B0096F318 /* HomeGiffCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGiffCell.swift; sourceTree = "<group>"; };
+		220AE2542601183B0096F318 /* MyGifColllectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifColllectionCell.swift; sourceTree = "<group>"; };
 		220AE276260121F30096F318 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		220AE28E260229910096F318 /* CollectionViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBuilder.swift; sourceTree = "<group>"; };
 		2218C8E5267243000058BE63 /* CameraSessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSessionController.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 		2246AB4725FE1575001B2AFA /* SnapKitBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitBuilder.swift; sourceTree = "<group>"; };
 		2246AB4C25FE1590001B2AFA /* Pedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pedding.swift; sourceTree = "<group>"; };
 		2246AB5125FE193E001B2AFA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		2246ABE725FE3378001B2AFA /* HomeCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewLayout.swift; sourceTree = "<group>"; };
+		2246ABE725FE3378001B2AFA /* VerticalCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCollectionViewLayout.swift; sourceTree = "<group>"; };
 		2246AC2C25FE37E4001B2AFA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2246AC3125FE38AC001B2AFA /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		228239C3274D050F00222E16 /* Rx+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Loader.swift"; sourceTree = "<group>"; };
@@ -309,6 +309,7 @@
 		22255C2D275A47B700662BD6 /* VerticalCollection */ = {
 			isa = PBXGroup;
 			children = (
+				2246ABE725FE3378001B2AFA /* VerticalCollectionViewLayout.swift */,
 				22F3584127557868001E2DB8 /* VerticalCollectionViewModelType.swift */,
 				22F3583F2755783C001E2DB8 /* VerticalCollectionViewController.swift */,
 			);
@@ -318,8 +319,6 @@
 		2246ABE625FE3361001B2AFA /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				2246ABE725FE3378001B2AFA /* HomeCollectionViewLayout.swift */,
-				220AE2542601183B0096F318 /* HomeGiffCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -562,10 +561,11 @@
 		22F3583E2755781C001E2DB8 /* MyGifs */ = {
 			isa = PBXGroup;
 			children = (
-				22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */,
 				22255C2C275A418300662BD6 /* Repo */,
+				22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */,
 				22F358432755788D001E2DB8 /* MyGifs.swift */,
 				22F3584927557B7F001E2DB8 /* MyGifsViewModel.swift */,
+				220AE2542601183B0096F318 /* MyGifColllectionCell.swift */,
 			);
 			path = MyGifs;
 			sourceTree = "<group>";
@@ -887,14 +887,14 @@
 				22F6633B26888AF900A82446 /* Rx+Coordinator.swift in Sources */,
 				2218C8F02675F5EB0058BE63 /* CamearaViewModelType.swift in Sources */,
 				22B01F4B2670F0AF00AF474C /* MessagesBuilder.swift in Sources */,
-				220AE2552601183B0096F318 /* HomeGiffCell.swift in Sources */,
+				220AE2552601183B0096F318 /* MyGifColllectionCell.swift in Sources */,
 				22F358442755788D001E2DB8 /* MyGifs.swift in Sources */,
 				220AE2432601003A0096F318 /* HomeRepo.swift in Sources */,
 				22E3C11725F7C04C00CBB955 /* Coordinator.swift in Sources */,
 				220AE28F260229920096F318 /* CollectionViewBuilder.swift in Sources */,
 				22E3C03825F53C1D00CBB955 /* LaunchScreenViewController.swift in Sources */,
 				22E3C21D25F9073100CBB955 /* HomeViewController.swift in Sources */,
-				2246ABE825FE3378001B2AFA /* HomeCollectionViewLayout.swift in Sources */,
+				2246ABE825FE3378001B2AFA /* VerticalCollectionViewLayout.swift in Sources */,
 				22F3584A27557B7F001E2DB8 /* MyGifsViewModel.swift in Sources */,
 				220AE14C25FE5A9D0096F318 /* Decoder.swift in Sources */,
 				22E3C21825F8FD8000CBB955 /* HomeCoordinator.swift in Sources */,
