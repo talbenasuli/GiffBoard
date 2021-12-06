@@ -18,4 +18,9 @@ extension UICollectionView {
         self.keyboardDismissMode = keyboardDismissMode
         return self
     }
+    
+    func allowsSelection(_ alowSelection: Bool) -> Self {
+        self.allowsSelection = alowSelection
+        return self
+    }
 }

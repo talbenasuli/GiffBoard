@@ -17,6 +17,7 @@ import UIKit
         private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
             .backgroundColor(UIColor.App.white)
             .keyboardDismissMode(.onDrag)
+            .allowsSelection(false)
         
         private let viewModel: VerticalCollectionViewModelType
         

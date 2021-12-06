@@ -10,8 +10,10 @@ import SwiftyGif
 
 extension Giff.My {
     
-    final class CollectionCell: UICollectionViewCell, VerticalCollectionCell {
-        
+    final class CollectionCell: UICollectionViewCell, VerticalCollectionCell, LoaderContainer {
+    
+        var loader: Loader = RandomColorLoader()
+    
         let imageView = UIImageView()
         
         override init(frame: CGRect) {
@@ -42,6 +44,11 @@ extension Giff.My {
                 self?.imageView.animationDuration = content.duration
                 self?.imageView.startAnimating()
             }).disposed(by: viewModel.disposeBag)
+            
+            viewModel.loading
+                .drive(onNext: { [weak self] loading in
+                    loading ? self?.showLoader() : self?.hideLoader()
+                }).disposed(by: viewModel.disposeBag)
         }
         
         func configure(with cellType: VerticalCollectionCellType) {

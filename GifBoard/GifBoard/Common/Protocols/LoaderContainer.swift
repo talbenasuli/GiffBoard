@@ -74,3 +74,28 @@ extension LoaderContainer where Self: UIButton {
         loader.stopAnimating()
     }
 }
+
+extension LoaderContainer where Self: UICollectionViewCell{
+    
+    func addLoader() {
+        add(loader)
+        loader.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func showLoader() {
+        let loaderExists = contentView.subviews.first { $0 is Loader } != nil
+        
+        if !loaderExists {
+            addLoader()
+        }
+        loader.isHidden = false
+        loader.startAnimating()
+    }
+    
+    func hideLoader() {
+        loader.isHidden = true
+        loader.stopAnimating()
+    }
+}

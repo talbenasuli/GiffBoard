@@ -7,13 +7,18 @@
 
 import UIKit
 
-final class RandomColorLoader: UIView {
-        
+final class RandomColorLoader: UIView, Loader {
+    
+    func startAnimating() {
+        fadeLogoIn()
+    }
+    
+    func stopAnimating() {}
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .random()
         alpha = 0
-        fadeLogoIn()
     }
     
     required init?(coder: NSCoder) {

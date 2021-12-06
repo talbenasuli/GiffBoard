@@ -44,14 +44,7 @@ extension Giff {
             
             func handleGif() {
                 
-                let index: Int
-                if numberOfGifs == 0 {
-                    index = 0
-                } else {
-                    index = numberOfGifs - 1
-                }
-                
-                let folder = "GifIndex\(index)"
+                let folder = "GifIndex\(numberOfGifs)"
                 let gifContent = Camera.GifContent(duration: animationDuration)
                 
                 let save = repo.save(images: images, into: folder, andWith: gifContent)
@@ -65,13 +58,16 @@ extension Giff {
                     .disposed(by: disposeBag)
                 
                 save
-                    .map { $0.element }
+                    .compactMap { $0.element }
                     .bind(to: done)
                     .disposed(by: disposeBag)
                 
-                done.subscribe(onNext: {
-                    UserDefaults.standard.set(index, forKey: "gifLastIndex")
-                }).disposed(by: disposeBag)
+                save
+                    .compactMap { $0.element }
+                    .subscribe(onNext: {
+                        UserDefaults.standard.set(numberOfGifs, forKey: "gifLastIndex")
+                    })
+                    .disposed(by: disposeBag)
             }
             
             input.bottomButtonTapped
