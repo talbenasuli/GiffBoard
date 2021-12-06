@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 enum VerticalCollectionCellType {
-    case gif(Data)
+    case gif(Giff.My.CellViewModel)
 }
 
 protocol VerticalCollectionCell: UICollectionViewCell {
@@ -19,11 +19,11 @@ protocol VerticalCollectionCell: UICollectionViewCell {
 }
 
 struct VerticalCollectionViewModelInput {
-    var navigationPlusTapped = PublishRelay<Void>()
+    var navigationPlusTapped = PublishRelay<Int>()
 }
 
 struct VerticalCollectionViewModelOutput {
-    var navigationPlusTapped: Driver<Void>
+    var navigationPlusTapped: Driver<Int>
     var loading: Driver<Bool>
     var collectionItems: Driver<[VerticalCollectionCellType]>
     var navigationGifyTapped: Driver<Void>

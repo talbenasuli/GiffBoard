@@ -10,22 +10,23 @@ import RxSwift
 import Disk
 
 protocol MyGifLocalRepo {
-    func getMyGifs(page: Int) -> Single<[Data]>
+    func getMyGif(index: Int) -> Single<([UIImage], Camera.GifContent)>
 }
 
 extension Giff.My.Repo {
     
     final class Local: MyGifLocalRepo {
         
-        func getMyGifs(page: Int) -> Single<[Data]> {
+        func getMyGif(index: Int) -> Single<([UIImage], Camera.GifContent)> {
             
             return Single.create { single -> Disposable in
                 
                 DispatchQueue.global(qos: .background).async {
                     
                     do {
-                        let gifs = try Disk.retrieve("mineGif.json", from: .documents, as: [Data].self)
-                        single(.success(gifs))
+                        let gifs = try Disk.retrieve("GifIndex\(index)", from: .documents, as: [UIImage].self)
+                        let content = try Disk.retrieve("GifIndex\(index)\\Content", from: .documents, as: Camera.GifContent.self)
+                        single(.success((gifs,content)))
                     } catch let error{
                         print("fail to save gif - \(error)")
                         single(.error(error))

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import RxCocoa
 import RxSwift
-import Disk
 
 extension Giff {
     
@@ -21,12 +20,18 @@ extension Giff {
         private var finishedProcess = false
         private var gifData: Data?
         private let loading = BehaviorRelay<Bool>(value: false)
+        
+        private let repo: CameraRepo
 
         let disposeBag = DisposeBag()
                 
         init(images: [UIImage],
-             animationDuration: TimeInterval) {
+             animationDuration: TimeInterval,
+             numberOfGifs: Int,
+             repo: CameraRepo) {
         
+            self.repo = repo
+            
             input = GifPresenterViewModelInput(images: images, animationDuration: animationDuration, buttonTitle: "Save", bottomButtonTapped: PublishRelay<Void>(), gifFinished: PublishRelay<Data>(), undoTapped: PublishRelay<Void>())
             
             let done = PublishRelay<Void>()
@@ -37,22 +42,43 @@ extension Giff {
                                                  done: done.asDriver(onErrorDriveWith: .never()),
                                                  gifCopied: gifCopied.asDriver(onErrorDriveWith: .never()))
             
-            func handleGif(_ data: Data) {
-                UIPasteboard.general.setData(data, forPasteboardType: "com.compuserve.gif")
-
-                do { // TBA NTD add handler for local storage + make it rx + make it on other thread
-                    try Disk.append(data, to: "mineGif.json", in: .documents)
-                } catch { print("fail to save gif")}
+            func handleGif() {
                 
-                loading.accept(false)
-                done.accept(())
+                let index: Int
+                if numberOfGifs == 0 {
+                    index = 0
+                } else {
+                    index = numberOfGifs - 1
+                }
+                
+                let folder = "GifIndex\(index)"
+                let gifContent = Camera.GifContent(duration: animationDuration)
+                
+                let save = repo.save(images: images, into: folder, andWith: gifContent)
+                    .asObservable()
+                    .materialize()
+                    .share()
+                
+                save
+                    .map { _ in return false }
+                    .bind(to: loading)
+                    .disposed(by: disposeBag)
+                
+                save
+                    .map { $0.element }
+                    .bind(to: done)
+                    .disposed(by: disposeBag)
+                
+                done.subscribe(onNext: {
+                    UserDefaults.standard.set(index, forKey: "gifLastIndex")
+                }).disposed(by: disposeBag)
             }
             
             input.bottomButtonTapped
                 .subscribe(onNext: { [weak self] in
                     self?.loading.accept(true)
                     if self?.finishedProcess == true, let data = self?.gifData {
-                        handleGif(data)
+                        handleGif()
                     }
                 }).disposed(by: disposeBag)
             
@@ -61,7 +87,7 @@ extension Giff {
                     let userTapSave = self?.loading.value == true
                     
                     if userTapSave {
-                        handleGif(data)
+                        handleGif()
                     } else {
                         self?.finishedProcess = true
                         self?.gifData = data

@@ -40,9 +40,13 @@
 		2246ABE825FE3378001B2AFA /* VerticalCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246ABE725FE3378001B2AFA /* VerticalCollectionViewLayout.swift */; };
 		2246AC2D25FE37E4001B2AFA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AC2C25FE37E4001B2AFA /* NetworkManager.swift */; };
 		2246AC3225FE38AC001B2AFA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AC3125FE38AC001B2AFA /* NetworkRequest.swift */; };
+		227AB5C0275EABBB003117E4 /* MyGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227AB5BF275EABBB003117E4 /* MyGifCollectionViewCell.swift */; };
 		228239C4274D050F00222E16 /* Rx+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228239C3274D050F00222E16 /* Rx+Loader.swift */; };
 		228239C9274D17F100222E16 /* CommonLoaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228239C8274D17F100222E16 /* CommonLoaderButton.swift */; };
 		228239CB274D180800222E16 /* RandomColorLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228239CA274D180800222E16 /* RandomColorLoader.swift */; };
+		22A82C01275C0F320072D34E /* CameraRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A82C00275C0F320072D34E /* CameraRepo.swift */; };
+		22A82C04275C0FEA0072D34E /* CameraGifContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A82C03275C0FEA0072D34E /* CameraGifContent.swift */; };
+		22A82C06275C105E0072D34E /* CameraLocalRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A82C05275C105E0072D34E /* CameraLocalRepo.swift */; };
 		22B01F4B2670F0AF00AF474C /* MessagesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B01F4A2670F0AF00AF474C /* MessagesBuilder.swift */; };
 		22B01F542670F87C00AF474C /* Rx+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B01F532670F87C00AF474C /* Rx+UIViewController.swift */; };
 		22B01F592671004F00AF474C /* LoaderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B01F582671004F00AF474C /* LoaderContainer.swift */; };
@@ -134,9 +138,13 @@
 		2246ABE725FE3378001B2AFA /* VerticalCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCollectionViewLayout.swift; sourceTree = "<group>"; };
 		2246AC2C25FE37E4001B2AFA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2246AC3125FE38AC001B2AFA /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		227AB5BF275EABBB003117E4 /* MyGifCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGifCollectionViewCell.swift; sourceTree = "<group>"; };
 		228239C3274D050F00222E16 /* Rx+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Loader.swift"; sourceTree = "<group>"; };
 		228239C8274D17F100222E16 /* CommonLoaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonLoaderButton.swift; sourceTree = "<group>"; };
 		228239CA274D180800222E16 /* RandomColorLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColorLoader.swift; sourceTree = "<group>"; };
+		22A82C00275C0F320072D34E /* CameraRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRepo.swift; sourceTree = "<group>"; };
+		22A82C03275C0FEA0072D34E /* CameraGifContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraGifContent.swift; sourceTree = "<group>"; };
+		22A82C05275C105E0072D34E /* CameraLocalRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraLocalRepo.swift; sourceTree = "<group>"; };
 		22B01F4A2670F0AF00AF474C /* MessagesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesBuilder.swift; sourceTree = "<group>"; };
 		22B01F532670F87C00AF474C /* Rx+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIViewController.swift"; sourceTree = "<group>"; };
 		22B01F582671004F00AF474C /* LoaderContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderContainer.swift; sourceTree = "<group>"; };
@@ -282,6 +290,7 @@
 		221E67012742F493004D8308 /* GifPresenter */ = {
 			isa = PBXGroup;
 			children = (
+				22A82C02275C0F370072D34E /* Repo */,
 				221E67022742F4BA004D8308 /* GifPresenterViewModelType.swift */,
 				221E67042742F8E6004D8308 /* GifPresenterViewModel.swift */,
 				22DFAD85268A633800CD40D7 /* GifPresenterViewController.swift */,
@@ -331,6 +340,15 @@
 				220AE14B25FE5A9D0096F318 /* Decoder.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		227AB5BE275EAB77003117E4 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				227AB5BF275EABBB003117E4 /* MyGifCollectionViewCell.swift */,
+				220AE2542601183B0096F318 /* MyGifColllectionCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		228239C5274D17C300222E16 /* Builders */ = {
@@ -384,6 +402,16 @@
 			isa = PBXGroup;
 			children = (
 				220AE2422601003A0096F318 /* HomeRepo.swift */,
+			);
+			path = Repo;
+			sourceTree = "<group>";
+		};
+		22A82C02275C0F370072D34E /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+				22A82C03275C0FEA0072D34E /* CameraGifContent.swift */,
+				22A82C00275C0F320072D34E /* CameraRepo.swift */,
+				22A82C05275C105E0072D34E /* CameraLocalRepo.swift */,
 			);
 			path = Repo;
 			sourceTree = "<group>";
@@ -565,7 +593,7 @@
 				22F3584527557940001E2DB8 /* MyGifsCoordinator.swift */,
 				22F358432755788D001E2DB8 /* MyGifs.swift */,
 				22F3584927557B7F001E2DB8 /* MyGifsViewModel.swift */,
-				220AE2542601183B0096F318 /* MyGifColllectionCell.swift */,
+				227AB5BE275EAB77003117E4 /* CollectionViewCell */,
 			);
 			path = MyGifs;
 			sourceTree = "<group>";
@@ -870,6 +898,7 @@
 				220AE24C2601018C0096F318 /* HomeRouter.swift in Sources */,
 				22255C2B275A417F00662BD6 /* MyGifLocalRepo.swift in Sources */,
 				22E3C19025F7D09C00CBB955 /* ViewBuilder.swift in Sources */,
+				227AB5C0275EABBB003117E4 /* MyGifCollectionViewCell.swift in Sources */,
 				22E3C22325F9078E00CBB955 /* Fonts.swift in Sources */,
 				2218C8E82675ECA80058BE63 /* ButtonBuilder.swift in Sources */,
 				228239C9274D17F100222E16 /* CommonLoaderButton.swift in Sources */,
@@ -883,6 +912,7 @@
 				22F663412688B6BF00A82446 /* Rx+Animations.swift in Sources */,
 				22F6633F2688AA3300A82446 /* ViewAnimations.swift in Sources */,
 				2218C9052678D6CB0058BE63 /* RX+CameraSessionController.swift in Sources */,
+				22A82C04275C0FEA0072D34E /* CameraGifContent.swift in Sources */,
 				22E3C1B825F8F50700CBB955 /* LabelBuilder.swift in Sources */,
 				22F6633B26888AF900A82446 /* Rx+Coordinator.swift in Sources */,
 				2218C8F02675F5EB0058BE63 /* CamearaViewModelType.swift in Sources */,
@@ -893,6 +923,7 @@
 				22E3C11725F7C04C00CBB955 /* Coordinator.swift in Sources */,
 				220AE28F260229920096F318 /* CollectionViewBuilder.swift in Sources */,
 				22E3C03825F53C1D00CBB955 /* LaunchScreenViewController.swift in Sources */,
+				22A82C06275C105E0072D34E /* CameraLocalRepo.swift in Sources */,
 				22E3C21D25F9073100CBB955 /* HomeViewController.swift in Sources */,
 				2246ABE825FE3378001B2AFA /* VerticalCollectionViewLayout.swift in Sources */,
 				22F3584A27557B7F001E2DB8 /* MyGifsViewModel.swift in Sources */,
@@ -908,6 +939,7 @@
 				22F663392688894100A82446 /* Rx+UINavigation.swift in Sources */,
 				22255C29275A408E00662BD6 /* MyGifRepo.swift in Sources */,
 				2246AB3D25FA5B1A001B2AFA /* SearchBarBuilder.swift in Sources */,
+				22A82C01275C0F320072D34E /* CameraRepo.swift in Sources */,
 				22E3C1FF25F8F8F000CBB955 /* ColorBuilder.swift in Sources */,
 				22E3BFF925F5392A00CBB955 /* AppDelegate.swift in Sources */,
 				2218C8E6267243000058BE63 /* CameraSessionController.swift in Sources */,

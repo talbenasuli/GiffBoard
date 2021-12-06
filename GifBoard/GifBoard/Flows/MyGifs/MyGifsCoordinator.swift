@@ -27,8 +27,8 @@ extension Giff.My {
             tabViewController = nvc
             
             viewModel.output.navigationPlusTapped
-                .drive(onNext: {
-                    self.showCamera()
+                .drive(onNext: { numberOfItems in
+                    self.showCamera(with: numberOfItems)
                 }).disposed(by: viewModel.disposeBag)
             
             viewModel.output.navigationGifyTapped
@@ -41,8 +41,8 @@ extension Giff.My {
 
 private extension Giff.My.Coordinator {
 
-    func showCamera() {
-        CreateGiff.Coordinator(presentationStyle: .present(presenting: tabViewController)).start()
+    func showCamera(with numberOfItems: Int) {
+        CreateGiff.Coordinator(presentationStyle: .present(presenting: tabViewController), numberOfItems: numberOfItems).start()
     }
     
     func showGify() {

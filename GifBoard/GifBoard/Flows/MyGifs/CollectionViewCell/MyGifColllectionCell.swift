@@ -33,16 +33,20 @@ extension Giff.My {
             imageView.clear()
         }
         
-        private func configure(with data: Data) {
-            let gif = UIImage(data: data)
-            imageView.animationImages = gif?.images
-            imageView.animationDuration = gif!.duration / 2
-            imageView.startAnimating()
+        private func configure(with viewModel: Giff.My.CellViewModel) {
+            viewModel.images.drive(onNext: { [weak self] data in
+                let images = data.0
+                let content = data.1
+                
+                self?.imageView.animationImages = images
+                self?.imageView.animationDuration = content.duration
+                self?.imageView.startAnimating()
+            }).disposed(by: viewModel.disposeBag)
         }
         
         func configure(with cellType: VerticalCollectionCellType) {
-            guard case let .gif(data) = cellType else { return }
-            configure(with: data)
+            guard case let .gif(viewModel) = cellType else { return }
+            configure(with: viewModel)
         }
     }
 }

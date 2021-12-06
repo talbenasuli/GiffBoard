@@ -26,7 +26,7 @@ extension Camera {
                                           enableTouch: input.enableTouch.asDriver(onErrorDriveWith: .never()),
                                           cancelTapped: input.cancelTapped.asDriver(onErrorDriveWith: .never()),
                                           images: finishedSnapshot.asDriver(onErrorDriveWith: .never()),
-                                          duration: duration,
+                                          duration: 0,
                                           gifFinished: gifFinished.asDriver(onErrorDriveWith: .never()))
         
         private let cameraSessionController = CameraSessionController()
@@ -39,7 +39,6 @@ extension Camera {
         private var finishedSnapshot = BehaviorRelay<[UIImage]>(value: [])
         private var gifFinished = PublishRelay<Data>()
         private var timer: Timer?
-        private var duration = 0.0
         private var startTime: TimeInterval?
         private lazy var takeShotWorkItem = DispatchWorkItem(block: { })
         
@@ -85,6 +84,7 @@ private extension Camera.ViewModel {
         input.cameraLongPressFinished
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
+                self.finishTimer()
                 self.userLongPress = false
                 self.takeShotWorkItem.cancel()
                 self.finishedSnapshot.accept(self.capturedImages)
@@ -106,7 +106,8 @@ private extension Camera.ViewModel {
     
     @objc func countTime() {
         guard let startTime = startTime else { return }
-        duration = NSDate.timeIntervalSinceReferenceDate - startTime
+        output.duration = NSDate.timeIntervalSinceReferenceDate - startTime
+        print("TIME: \(output.duration)")
     }
     
     func finishTimer() {

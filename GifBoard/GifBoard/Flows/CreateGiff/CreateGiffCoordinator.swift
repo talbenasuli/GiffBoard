@@ -14,6 +14,13 @@ extension CreateGiff {
     
     final class Coordinator: Coordinators.Base {
         
+        let numberOfItems: Int
+        
+        init(presentationStyle: Coordinators.PresentationStyle, numberOfItems: Int) {
+            self.numberOfItems = numberOfItems
+            super.init(presentationStyle: presentationStyle)
+        }
+        
         override func start() {
             showCamera()
         }
@@ -40,7 +47,10 @@ private extension CreateGiff.Coordinator {
     }
     
     func showGif(with cameraViewModel: Camera.ViewModel, and images: [UIImage]) {
-        let viewModel = Giff.PresenterViewModel(images: images, animationDuration: cameraViewModel.output.duration)
+        
+        let repo = Camera.Repo.Base(localRepo: Camera.Repo.Local())
+        
+        let viewModel = Giff.PresenterViewModel(images: images, animationDuration: cameraViewModel.output.duration, numberOfGifs: numberOfItems, repo: repo)
 
         cameraViewModel.output.gifFinished
             .asObservable()

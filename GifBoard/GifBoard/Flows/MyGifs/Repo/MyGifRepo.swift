@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol MyGifRepo {
-    func getMyGifs(page: Int) -> Single<[Data]>
+    func getMyGif(index: Int) -> Single<([UIImage], Camera.GifContent)>
 }
 
 extension Giff.My {
@@ -26,8 +26,8 @@ extension Giff.My.Repo {
             self.localRepo = localRepo
         }
         
-        func getMyGifs(page: Int) -> Single<[Data]> {
-            return localRepo.getMyGifs(page: page)
+        func getMyGif(index: Int) -> Single<([UIImage], Camera.GifContent)> {
+            return localRepo.getMyGif(index: index)
         }
     }
 }
