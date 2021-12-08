@@ -37,7 +37,7 @@ extension Camera {
         
         private var capturedImages = [UIImage]()
         private var finishedSnapshot = BehaviorRelay<[UIImage]>(value: [])
-        private var gifFinished = PublishRelay<Data>()
+        private var gifFinished = PublishRelay<Void>()
         private var timer: Timer?
         private var startTime: TimeInterval?
         private lazy var takeShotWorkItem = DispatchWorkItem(block: { })
@@ -71,7 +71,7 @@ private extension Camera.ViewModel {
                     self.capturedImages = []
                     DispatchQueue.global(qos: .background).async { [weak self] in
                         guard let self = self else { return }
-                        while(self.userLongPress && self.capturedImages.count <= 60) {
+                        while(self.userLongPress && self.capturedImages.count <= 40) {
                             self.cameraSessionController.takeShot()
                         }
                     }
@@ -88,18 +88,18 @@ private extension Camera.ViewModel {
                 self.userLongPress = false
                 self.takeShotWorkItem.cancel()
                 self.finishedSnapshot.accept(self.capturedImages)
+                self.gifFinished.accept(())
                 
-                DispatchQueue.global().async { [weak self] in
-                    guard let self = self else { return }
-                    self.gifConverter.createGIF(form: self.capturedImages, saveableURL: nil, loopCount: 1, frameDelay: 0, onFinished: { [weak self] url in
-                        if let url = url {
-                            print("finished!!!!!!!!!!!!!!!!!!!")
-                            let data: NSData = NSData(contentsOf: url)!
-
-                            self?.gifFinished.accept(data as Data)
-                        }
-                    })
-                }
+//                DispatchQueue.global().async { [weak self] in
+//                    guard let self = self else { return }
+//                    self.gifConverter.createGIF(form: self.capturedImages, saveableURL: nil, loopCount: 1, frameDelay: 0, onFinished: { [weak self] url in
+//                        if let url = url {
+//                            print("finished!!!!!!!!!!!!!!!!!!!")
+//                            let data: NSData = NSData(contentsOf: url)!
+//                            self?.gifFinished.accept(data as Data)
+//                        }
+//                    })
+//                }
                 
             }).disposed(by: disposeBag)
     }

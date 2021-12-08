@@ -26,7 +26,7 @@ extension Camera {
         var cancelTapped: Driver<Void>
         var images: Driver<[UIImage]>
         var duration: TimeInterval
-        var gifFinished: Driver<Data>
+        var gifFinished: Driver<Void>
     }
 }
 

@@ -18,7 +18,6 @@ extension Giff {
         var output: GifPresenterViewModelOutput
         
         private var finishedProcess = false
-        private var gifData: Data?
         private let loading = BehaviorRelay<Bool>(value: false)
         
         private let repo: CameraRepo
@@ -32,7 +31,7 @@ extension Giff {
         
             self.repo = repo
             
-            input = GifPresenterViewModelInput(images: images, animationDuration: animationDuration, buttonTitle: "Save", bottomButtonTapped: PublishRelay<Void>(), gifFinished: PublishRelay<Data>(), undoTapped: PublishRelay<Void>())
+            input = GifPresenterViewModelInput(images: images, animationDuration: animationDuration, buttonTitle: "Save", bottomButtonTapped: PublishRelay<Void>(), gifFinished: PublishRelay<Void>(), undoTapped: PublishRelay<Void>())
             
             let done = PublishRelay<Void>()
             let gifCopied = PublishRelay<String>()
@@ -43,37 +42,22 @@ extension Giff {
                                                  gifCopied: gifCopied.asDriver(onErrorDriveWith: .never()))
             
             func handleGif() {
-                
                 let folder = "GifIndex\(numberOfGifs)"
-                let gifContent = Camera.GifContent(duration: animationDuration)
+                let gifContent = Camera.GifContent(duration: animationDuration, imagesCount: images.count)
                 
-                let save = repo.save(images: images, into: folder, andWith: gifContent)
-                    .asObservable()
-                    .materialize()
-                    .share()
-                
-                save
-                    .map { _ in return false }
-                    .bind(to: loading)
-                    .disposed(by: disposeBag)
-                
-                save
-                    .compactMap { $0.element }
-                    .bind(to: done)
-                    .disposed(by: disposeBag)
-                
-                save
-                    .compactMap { $0.element }
-                    .subscribe(onNext: {
-                        UserDefaults.standard.set(numberOfGifs, forKey: "gifLastIndex")
-                    })
+                repo.save(images: images, into: folder, andWith: gifContent)
+                    .subscribe { [weak self] in
+                        self?.loading.accept(false)
+                        UserDefaults.standard.set(numberOfGifs + 1, forKey: "numberOfGifs")
+                        done.accept((()))
+                    } onError: { _ in }
                     .disposed(by: disposeBag)
             }
             
             input.bottomButtonTapped
                 .subscribe(onNext: { [weak self] in
                     self?.loading.accept(true)
-                    if self?.finishedProcess == true, let data = self?.gifData {
+                    if self?.finishedProcess == true {
                         handleGif()
                     }
                 }).disposed(by: disposeBag)
@@ -86,7 +70,6 @@ extension Giff {
                         handleGif()
                     } else {
                         self?.finishedProcess = true
-                        self?.gifData = data
                     }
                 }).disposed(by: disposeBag)
         }

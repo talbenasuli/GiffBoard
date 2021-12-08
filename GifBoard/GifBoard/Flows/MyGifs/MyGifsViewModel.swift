@@ -31,10 +31,10 @@ extension Giff.My {
         private var repo: Repo.Base
         
         init(repo: Repo.Base) {
-            let gifsLastIndex = UserDefaults.standard.integer(forKey: "gifLastIndex")
+            let numberOfGifs = UserDefaults.standard.integer(forKey: "numberOfGifs")
             self.repo = repo
             setupNavigation()
-            getGifs(until: gifsLastIndex)
+            getGifs(until: numberOfGifs)
         }
         
         func item(at index: IndexPath) -> VerticalCollectionCellType {
@@ -50,7 +50,10 @@ private extension Giff.My.ViewModel {
             .tintColor(.black)
         
         plusButton.rx.tap
-            .map { self.collectionItems.value.count }
+            .map {
+                print("number of items: \(self.collectionItems.value.count)")
+                return self.collectionItems.value.count
+            }
             .bind(to: input.navigationPlusTapped)
             .disposed(by: disposeBag)
         
@@ -70,20 +73,11 @@ private extension Giff.My.ViewModel {
                             .left(buttons: [logo])]
     }
     
-    func getGifs(until lastIndex: Int) {
-        
-        let cellsType = (0...lastIndex)
+    func getGifs(until numberOfGifs: Int) {
+        guard numberOfGifs != 0 else { return }
+        let cellsType = (0..<numberOfGifs)
             .map { Giff.My.CellViewModel(index: $0, repo: repo) }
             .map { VerticalCollectionCellType.gif($0) }
         collectionItems.accept(cellsType)
-        
-//        repo.getMyGif(index: 0)
-//            .asObservable()
-//            .subscribe { data in
-//                let items = data.map { VerticalCollectionCellType.gif($0) }
-//                self.collectionItems.accept(items)
-//            } onError: { error in }
-//            .disposed(by: disposeBag)
-
     }
 }

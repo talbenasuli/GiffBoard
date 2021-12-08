@@ -21,18 +21,36 @@ extension Giff.My.Repo {
             
             return Single.create { single -> Disposable in
                 
-                DispatchQueue.global(qos: .background).async {
+                var content: Camera.GifContent?
+                do {
+                    content = try Disk.retrieve("GifIndex\(index)\\Content", from: .documents, as: Camera.GifContent.self)
+                } catch { }
+                
+                guard let content = content else {
+                    return Disposables.create()
+                }
+
+                let dispatchGroup = DispatchGroup()
+                
+                var images = [UIImage]()
+                
+                (0...content.imagesCount).forEach { imageIndex in
+                    dispatchGroup.enter()
                     
-                    do {
-                        let gifs = try Disk.retrieve("GifIndex\(index)", from: .documents, as: [UIImage].self)
-                        let content = try Disk.retrieve("GifIndex\(index)\\Content", from: .documents, as: Camera.GifContent.self)
-                        single(.success((gifs,content)))
-                    } catch let error{
-                        print("fail to save gif - \(error)")
-                        single(.error(error))
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        do {
+                            let image = try Disk.retrieve("GifIndex\(index)/\(imageIndex)", from: .documents, as: [UIImage].self).first ?? UIImage()
+                            images.append(image)
+                            dispatchGroup.leave()
+                        } catch {
+                            dispatchGroup.leave()
+                        }
                     }
                 }
                 
+                dispatchGroup.notify(queue: .main) {
+                    single(.success((images, content)))
+                }
                 return Disposables.create()
             }
         }

@@ -11,5 +11,6 @@ extension Camera {
     
     struct GifContent: Codable {
         var duration: TimeInterval
+        var imagesCount: Int
     }
 }

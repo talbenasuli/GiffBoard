@@ -15,7 +15,7 @@ struct GifPresenterViewModelInput {
     var buttonTitle: String
     
     var bottomButtonTapped: PublishRelay<Void>
-    var gifFinished: PublishRelay<Data>
+    var gifFinished: PublishRelay<Void>
     var undoTapped: PublishRelay<Void>
  }
 
