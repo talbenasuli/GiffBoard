@@ -45,7 +45,7 @@ private extension Giff.My.CellViewModel {
         
         repo.getMyGif(index: index)
             .compactMap({ (images, content) in
-                return (Array(images.prefix(20)), content)
+                return (Array(images.prefix(20).map { $0.thumbnail(size: 130) } ), content)
             })
             .subscribe { [weak self] (images, content) in
                 guard let self = self else { return }

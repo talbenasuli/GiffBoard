@@ -128,7 +128,8 @@ extension Camera.ViewModel: CameraSessionControllerDelegate {
     func cameraSessionControllerFailed(_ controller: CameraSessionController, with error: AVError.Code) {}
     
     func cameraSessionControllerdidFinishProcessing(_ controller: CameraSessionController, image: UIImage) {
-        capturedImages.append(image)
+        let compressd = UIImage(data: image.jpegData(compressionQuality: 0.1)!)!
+        capturedImages.append(compressd)
         print(capturedImages.count)
     }
 }

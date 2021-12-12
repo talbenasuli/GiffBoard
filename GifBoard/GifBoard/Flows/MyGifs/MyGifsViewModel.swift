@@ -65,7 +65,6 @@ private extension Giff.My.ViewModel {
         
         plusButton.rx.tap
             .map {
-                print("number of items: \(self.collectionItems.value.count)")
                 return self.collectionItems.value.count
             }
             .bind(to: input.navigationPlusTapped)
