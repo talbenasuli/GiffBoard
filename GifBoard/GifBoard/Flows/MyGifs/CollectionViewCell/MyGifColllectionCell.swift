@@ -21,8 +21,7 @@ extension Giff.My {
             contentView.addSubview(imageView)
             
             imageView.snp.makeConstraints { make in
-                make.trailing.leading.bottom.equalToSuperview()
-                make.top.equalToSuperview().offset(.tiny)
+                make.edges.equalToSuperview()
             }
         }
  
@@ -36,11 +35,13 @@ extension Giff.My {
         }
         
         private func configure(with viewModel: Giff.My.CellViewModel) {
+            viewModel.start()
             viewModel.images.drive(onNext: { [weak self] data in
                 let images = data.0
                 let content = data.1
                 
                 self?.imageView.animationImages = images
+                self?.imageView.image = images.first
                 self?.imageView.animationDuration = content.duration
                 self?.imageView.startAnimating()
             }).disposed(by: viewModel.disposeBag)

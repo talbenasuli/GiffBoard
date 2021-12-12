@@ -49,6 +49,8 @@ extension Giff {
                     .subscribe { [weak self] in
                         self?.loading.accept(false)
                         UserDefaults.standard.set(numberOfGifs + 1, forKey: "numberOfGifs")
+                        NotificationCenter.default.post(name: Notification.Name("GifUpdate"), object: nil)
+
                         done.accept((()))
                     } onError: { _ in }
                     .disposed(by: disposeBag)
@@ -63,7 +65,7 @@ extension Giff {
                 }).disposed(by: disposeBag)
             
             input.gifFinished
-                .subscribe(onNext: { [weak self] data in
+                .subscribe(onNext: { [weak self] in
                     let userTapSave = self?.loading.value == true
                     
                     if userTapSave {

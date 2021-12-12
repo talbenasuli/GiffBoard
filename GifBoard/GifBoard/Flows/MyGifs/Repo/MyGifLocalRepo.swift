@@ -21,35 +21,24 @@ extension Giff.My.Repo {
             
             return Single.create { single -> Disposable in
                 
-                var content: Camera.GifContent?
-                do {
-                    content = try Disk.retrieve("GifIndex\(index)\\Content", from: .documents, as: Camera.GifContent.self)
-                } catch { }
-                
-                guard let content = content else {
-                    return Disposables.create()
-                }
-
-                let dispatchGroup = DispatchGroup()
-                
-                var images = [UIImage]()
-                
-                (0...content.imagesCount).forEach { imageIndex in
-                    dispatchGroup.enter()
+                DispatchQueue.global(qos: .background).async {
                     
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        do {
-                            let image = try Disk.retrieve("GifIndex\(index)/\(imageIndex)", from: .documents, as: [UIImage].self).first ?? UIImage()
-                            images.append(image)
-                            dispatchGroup.leave()
-                        } catch {
-                            dispatchGroup.leave()
+                    do {
+                        let content = try Disk.retrieve("GifIndex\(index)\\Content", from: .documents, as: Camera.GifContent.self)
+                        var images = [UIImage]()
+                        
+                        try (0...content.imagesCount).forEach { imageIndex in
+                            let imageExist =  Disk.exists("GifIndex\(index)/\(imageIndex)", in: .documents)
+                            
+                            if imageExist {
+                                let image = try Disk.retrieve("GifIndex\(index)/\(imageIndex)", from: .documents, as: [UIImage].self).first ?? UIImage()
+                                images.append(image)
+                            }
                         }
+                        single(.success((images, content)))
+                    } catch let error {
+                        single(.error(error))
                     }
-                }
-                
-                dispatchGroup.notify(queue: .main) {
-                    single(.success((images, content)))
                 }
                 return Disposables.create()
             }

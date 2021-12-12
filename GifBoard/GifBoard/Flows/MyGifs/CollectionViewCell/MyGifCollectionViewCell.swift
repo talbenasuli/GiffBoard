@@ -13,7 +13,7 @@ extension Giff.My {
     
     final class CellViewModel {
         
-        private let index: Int
+        let index: Int
         private let repo: Repo.Base
         
         let disposeBag = DisposeBag()
@@ -27,6 +27,9 @@ extension Giff.My {
         init(index: Int, repo: Repo.Base) {
             self.index = index
             self.repo = repo
+        }
+        
+        func start() {
             getGif()
         }
     }
@@ -38,19 +41,16 @@ private extension Giff.My.CellViewModel {
     
         _loading.accept(true)
         
-        let gifImages = repo.getMyGif(index: index)
-            .asObservable()
-            .materialize()
-            .share()
-        
-        gifImages
-            .compactMap { $0.element }
-            .bind(to: _images)
-            .disposed(by: disposeBag)
-        
-        gifImages
-            .compactMap { _ in return false }
-            .bind(to: _loading)
-            .disposed(by: disposeBag)
+        repo.getMyGif(index: index)
+            .subscribe { [weak self] (images, content) in
+                guard let self = self else { return }
+                self._images.accept((images, content))
+                self._loading.accept(false)
+                
+            } onError: { [weak self] error in
+                guard let self = self else { return }
+                self._loading.accept(false)
+                print(error)
+            }.disposed(by: disposeBag)
     }
 }

@@ -17,6 +17,8 @@ extension Camera.Repo {
     
     final class Local: CameraLocalRepo {
         
+        private let dispatchQueue = DispatchQueue(label: "com.images", qos: .background, attributes: .concurrent)
+        
         func save(images: [UIImage], into fileName: String, andWith contentData: Camera.GifContent) -> Single<Void> {
             return Single.create { single -> Disposable in
                 
@@ -25,7 +27,7 @@ extension Camera.Repo {
                 
                 for (index,image) in images.enumerated() {
                     dispatchGroup.enter()
-                    DispatchQueue.global(qos: .userInitiated).async {
+                    self.dispatchQueue.async {
                         do {
                             try Disk.append(image, to: "\(fileName)/\(index)", in: .documents)
                             dispatchGroup.leave()
@@ -45,15 +47,6 @@ extension Camera.Repo {
                 dispatchGroup.notify(queue: .main) {
                     single(.success(()))
                 }
-//                DispatchQueue.global(qos: .userInitiated).async {
-//                    do {
-//                        try Disk.save(images, to: .documents, as: fileName)
-//                        try Disk.save(contentData, to: .documents, as: "\(fileName)\\Content")
-//                        single(.success(()))
-//                    } catch let error {
-//                        single(.error(error))
-//                    }
-//                }
                 
                 return Disposables.create()
             }

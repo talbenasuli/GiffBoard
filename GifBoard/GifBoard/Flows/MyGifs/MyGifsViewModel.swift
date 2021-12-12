@@ -31,19 +31,28 @@ extension Giff.My {
         private var repo: Repo.Base
         
         init(repo: Repo.Base) {
-            let numberOfGifs = UserDefaults.standard.integer(forKey: "numberOfGifs")
             self.repo = repo
             setupNavigation()
-            getGifs(until: numberOfGifs)
+            updateGifs()
+            NotificationCenter.default.addObserver(self, selector: #selector(update), name: Notification.Name("GifUpdate"), object: nil)
         }
         
         func item(at index: IndexPath) -> VerticalCollectionCellType {
             return collectionItems.value[index.row]
         }
+        
+        @objc private func update() {
+            updateGifs()
+        }
     }
 }
 
 private extension Giff.My.ViewModel {
+    
+    func updateGifs() {
+        let numberOfGifs = UserDefaults.standard.integer(forKey: "numberOfGifs")
+        getGifs(until: numberOfGifs)
+    }
     
     func setupNavigation() {
         let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
