@@ -33,7 +33,7 @@ extension Giff.My {
         init(repo: Repo.Base) {
             self.repo = repo
             setupNavigation()
-            updateGifs()
+            getGifs()
             NotificationCenter.default.addObserver(self, selector: #selector(update), name: Notification.Name("GifUpdate"), object: nil)
         }
         
@@ -50,8 +50,13 @@ extension Giff.My {
 private extension Giff.My.ViewModel {
     
     func updateGifs() {
-        let numberOfGifs = UserDefaults.standard.integer(forKey: "numberOfGifs")
-        getGifs(until: numberOfGifs)
+        let lastIndex = UserDefaults.standard.integer(forKey: "numberOfGifs") - 1
+        guard lastIndex >= 0 else { return }
+        let viewModel = Giff.My.CellViewModel(index: lastIndex, repo: repo)
+        let cellType = VerticalCollectionCellType.gif(viewModel)
+        var items = collectionItems.value
+        items.append(cellType)
+        collectionItems.accept(items)
     }
     
     func setupNavigation() {
@@ -82,7 +87,8 @@ private extension Giff.My.ViewModel {
                             .left(buttons: [logo])]
     }
     
-    func getGifs(until numberOfGifs: Int) {
+    func getGifs() {
+        let numberOfGifs = UserDefaults.standard.integer(forKey: "numberOfGifs")
         guard numberOfGifs != 0 else { return }
         let cellsType = (0..<numberOfGifs)
             .map { Giff.My.CellViewModel(index: $0, repo: repo) }

@@ -15,6 +15,7 @@ extension Giff.My {
         
         let index: Int
         private let repo: Repo.Base
+        private var didFetch: Bool = false
         
         let disposeBag = DisposeBag()
         
@@ -38,15 +39,19 @@ extension Giff.My {
 private extension Giff.My.CellViewModel {
 
     func getGif() {
-    
+        guard !didFetch else { return }
+
         _loading.accept(true)
         
         repo.getMyGif(index: index)
+            .compactMap({ (images, content) in
+                return (Array(images.prefix(20)), content)
+            })
             .subscribe { [weak self] (images, content) in
                 guard let self = self else { return }
                 self._images.accept((images, content))
                 self._loading.accept(false)
-                
+                self.didFetch = true
             } onError: { [weak self] error in
                 guard let self = self else { return }
                 self._loading.accept(false)
